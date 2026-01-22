@@ -1,65 +1,1185 @@
-import Image from "next/image";
+'use client';
 
-export default function Home() {
+import { useState } from 'react';
+
+interface Headline {
+  text: string;
+}
+
+interface Description {
+  text: string;
+}
+
+interface PriceOffering {
+  header: string;
+  description: string;
+  amount: string;
+  currency: string;
+  unit: string;
+  url: string;
+}
+
+interface Callout {
+  text: string;
+  startDate: string;
+  endDate: string;
+}
+
+export default function CampaignCreationForm() {
+  // Campaign & Budget
+  const [campaignName, setCampaignName] = useState('Test Campaign - Digital Marketing');
+  const [dailyBudget, setDailyBudget] = useState('0.10');
+  const [status, setStatus] = useState('PAUSED');
+
+  // Ad Group & Keywords
+  const [adGroupName, setAdGroupName] = useState('Digital Marketing Services');
+  const [keywords, setKeywords] = useState('digital marketing, online advertising, seo services, social media marketing, ppc management');
+  const [maxCpc, setMaxCpc] = useState('1.00');
+
+  // Headlines & Descriptions
+  const [headlines, setHeadlines] = useState<Headline[]>([
+    { text: 'Expert Digital Marketing' },
+    { text: 'Grow Your Business Online' },
+    { text: 'Get Results Fast' },
+  ]);
+  const [descriptions, setDescriptions] = useState<Description[]>([
+    { text: 'Professional digital marketing services to help your business reach more customers online.' },
+    { text: 'SEO, PPC, and social media marketing. Get a free consultation today. Call now!' },
+  ]);
+
+  // Final URL
+  const [finalUrl, setFinalUrl] = useState('https://example.com/digital-marketing/services');
+
+  // Promotions
+  const [promoEnabled, setPromoEnabled] = useState(false);
+  const [promoOccasion, setPromoOccasion] = useState('NEW_YEARS');
+  const [promoLanguage, setPromoLanguage] = useState('en');
+  const [promoCurrency, setPromoCurrency] = useState('USD');
+  const [promoDiscountType, setPromoDiscountType] = useState('percent');
+  const [promoMoneyOff, setPromoMoneyOff] = useState('');
+  const [promoPercentOff, setPromoPercentOff] = useState('20');
+  const [promoTarget, setPromoTarget] = useState('All Services');
+  const [promoFinalUrl, setPromoFinalUrl] = useState('https://example.com/new-year-sale');
+  const [promoDetailsType, setPromoDetailsType] = useState('code');
+  const [promoCode, setPromoCode] = useState('NEWYEAR20');
+  const [promoMinimum, setPromoMinimum] = useState('');
+  const [promoStartDate, setPromoStartDate] = useState('');
+  const [promoEndDate, setPromoEndDate] = useState('');
+
+  // Prices
+  const [pricesEnabled, setPricesEnabled] = useState(false);
+  const [priceType, setPriceType] = useState('SERVICES');
+  const [priceQualifier, setPriceQualifier] = useState('FROM');
+  const [priceLanguage, setPriceLanguage] = useState('en');
+  const [priceOfferings, setPriceOfferings] = useState<PriceOffering[]>([
+    { header: 'Basic SEO', description: 'Small business package', amount: '299', currency: 'USD', unit: 'PER_MONTH', url: 'https://example.com/pricing/basic' },
+    { header: 'Professional', description: 'Growing businesses', amount: '599', currency: 'USD', unit: 'PER_MONTH', url: 'https://example.com/pricing/pro' },
+    { header: 'Enterprise', description: 'Full-service solution', amount: '1299', currency: 'USD', unit: 'PER_MONTH', url: 'https://example.com/pricing/enterprise' },
+  ]);
+
+  // Calls
+  const [callEnabled, setCallEnabled] = useState(false);
+  const [callCountryCode, setCallCountryCode] = useState('US');
+  const [callPhone, setCallPhone] = useState('+1-555-123-4567');
+
+  // Callouts
+  const [calloutsEnabled, setCalloutsEnabled] = useState(false);
+  const [callouts, setCallouts] = useState<Callout[]>([
+    { text: 'Free Consultation', startDate: '', endDate: '' },
+    { text: '24/7 Support', startDate: '', endDate: '' },
+  ]);
+
+  // Lead Form
+  const [leadFormEnabled, setLeadFormEnabled] = useState(false);
+  const [leadBusiness, setLeadBusiness] = useState('Digital Marketing Pro');
+  const [leadHeadline, setLeadHeadline] = useState('Get Your Free Marketing Audit');
+  const [leadDescription, setLeadDescription] = useState('Fill out this quick form and one of our experts will contact you within 24 hours to discuss your digital marketing needs.');
+  const [leadPrivacyUrl, setLeadPrivacyUrl] = useState('https://example.com/privacy');
+  const [leadCtaType, setLeadCtaType] = useState('GET_QUOTE');
+  const [leadCtaDesc, setLeadCtaDesc] = useState('Get your free audit now');
+  const [leadPostHeadline, setLeadPostHeadline] = useState('Thank You!');
+  const [leadPostDesc, setLeadPostDesc] = useState('Our team will contact you within 24 hours');
+  const [leadFields, setLeadFields] = useState<string[]>(['FULL_NAME', 'EMAIL', 'PHONE_NUMBER']);
+
+  // Mobile App
+  const [appEnabled, setAppEnabled] = useState(false);
+  const [appStore, setAppStore] = useState('GOOGLE_APP_STORE');
+  const [appId, setAppId] = useState('com.example.marketing');
+  const [appLinkText, setAppLinkText] = useState('Get the App');
+
+  // Helper functions
+  const addHeadline = () => {
+    if (headlines.length < 15) {
+      setHeadlines([...headlines, { text: '' }]);
+    }
+  };
+
+  const removeHeadline = (index: number) => {
+    if (headlines.length > 2) {
+      setHeadlines(headlines.filter((_, i) => i !== index));
+    }
+  };
+
+  const updateHeadline = (index: number, text: string) => {
+    const updated = [...headlines];
+    updated[index] = { text };
+    setHeadlines(updated);
+  };
+
+  const addDescription = () => {
+    if (descriptions.length < 4) {
+      setDescriptions([...descriptions, { text: '' }]);
+    }
+  };
+
+  const removeDescription = (index: number) => {
+    if (descriptions.length > 2) {
+      setDescriptions(descriptions.filter((_, i) => i !== index));
+    }
+  };
+
+  const updateDescription = (index: number, text: string) => {
+    const updated = [...descriptions];
+    updated[index] = { text };
+    setDescriptions(updated);
+  };
+
+  const addPriceOffering = () => {
+    if (priceOfferings.length < 8) {
+      setPriceOfferings([...priceOfferings, { header: '', description: '', amount: '', currency: 'USD', unit: '', url: '' }]);
+    }
+  };
+
+  const removePriceOffering = (index: number) => {
+    if (priceOfferings.length > 3) {
+      setPriceOfferings(priceOfferings.filter((_, i) => i !== index));
+    }
+  };
+
+  const updatePriceOffering = (index: number, field: keyof PriceOffering, value: string) => {
+    const updated = [...priceOfferings];
+    updated[index] = { ...updated[index], [field]: value };
+    setPriceOfferings(updated);
+  };
+
+  const addCallout = () => {
+    setCallouts([...callouts, { text: '', startDate: '', endDate: '' }]);
+  };
+
+  const removeCallout = (index: number) => {
+    if (callouts.length > 1) {
+      setCallouts(callouts.filter((_, i) => i !== index));
+    }
+  };
+
+  const updateCallout = (index: number, field: keyof Callout, value: string) => {
+    const updated = [...callouts];
+    updated[index] = { ...updated[index], [field]: value };
+    setCallouts(updated);
+  };
+
+  const toggleLeadField = (field: string) => {
+    if (leadFields.includes(field)) {
+      setLeadFields(leadFields.filter(f => f !== field));
+    } else {
+      setLeadFields([...leadFields, field]);
+    }
+  };
+
+  const getCharCounterClass = (current: number, max: number) => {
+    const ratio = current / max;
+    if (ratio >= 1) return 'text-red-500';
+    if (ratio >= 0.9) return 'text-yellow-500';
+    return 'text-gray-500';
+  };
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    // Form data would be collected here for submission
+    console.log('Form submitted');
+  };
+
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
+    <div className="min-h-screen bg-gray-50 py-8">
+      <div className="max-w-4xl mx-auto px-4">
+        <h1 className="text-3xl font-bold text-gray-900 mb-8">Create Campaign</h1>
+        
+        <form onSubmit={handleSubmit} className="space-y-6">
+          {/* CAMPAIGN & BUDGET */}
+          <div className="bg-white rounded-lg shadow p-6">
+            <h2 className="text-xl font-semibold mb-4 flex items-center gap-2">
+              Campaign & Budget
+              <span className="text-xs bg-red-100 text-red-700 px-2 py-0.5 rounded">Required</span>
+            </h2>
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">Campaign Name</label>
+                <input
+                  type="text"
+                  value={campaignName}
+                  onChange={(e) => setCampaignName(e.target.value)}
+                  placeholder="My Campaign"
+                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">Daily Budget (USD)</label>
+                <input
+                  type="number"
+                  step="0.01"
+                  min="0.01"
+                  value={dailyBudget}
+                  onChange={(e) => setDailyBudget(e.target.value)}
+                  placeholder="10.00"
+                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">Status</label>
+                <select
+                  value={status}
+                  onChange={(e) => setStatus(e.target.value)}
+                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                >
+                  <option value="PAUSED">Paused</option>
+                  <option value="ENABLED">Enabled</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          {/* AD GROUP & KEYWORDS */}
+          <div className="bg-white rounded-lg shadow p-6">
+            <h2 className="text-xl font-semibold mb-4 flex items-center gap-2">
+              Ad Group & Keywords
+              <span className="text-xs bg-red-100 text-red-700 px-2 py-0.5 rounded">Required</span>
+            </h2>
+            
+            <div className="space-y-4">
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">Ad Group Name</label>
+                <input
+                  type="text"
+                  value={adGroupName}
+                  onChange={(e) => setAdGroupName(e.target.value)}
+                  placeholder="My Ad Group"
+                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">Keywords (comma-separated)</label>
+                <textarea
+                  value={keywords}
+                  onChange={(e) => setKeywords(e.target.value)}
+                  rows={2}
+                  placeholder="keyword 1, keyword 2, keyword 3"
+                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">Max CPC (USD)</label>
+                <div className="flex items-center gap-2">
+                  <span className="text-lg">$</span>
+                  <input
+                    type="number"
+                    step="0.01"
+                    min="0.01"
+                    value={maxCpc}
+                    onChange={(e) => setMaxCpc(e.target.value)}
+                    placeholder="1.00"
+                    className="w-32 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  />
+                </div>
+                <p className="text-xs text-gray-500 mt-1">Maximum cost-per-click bid. Will be converted to your account&apos;s currency.</p>
+              </div>
+            </div>
+          </div>
+
+          {/* HEADLINES & DESCRIPTIONS */}
+          <div className="bg-white rounded-lg shadow p-6">
+            <h2 className="text-xl font-semibold mb-4 flex items-center gap-2">
+              Headlines & Descriptions
+              <span className="text-xs bg-red-100 text-red-700 px-2 py-0.5 rounded">Required</span>
+            </h2>
+            
+            <div className="space-y-4">
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">Headlines (min 2, max 15)</label>
+                <div className="space-y-2">
+                  {headlines.map((headline, index) => (
+                    <div key={index} className="flex items-center gap-2">
+                      <input
+                        type="text"
+                        maxLength={30}
+                        value={headline.text}
+                        onChange={(e) => updateHeadline(index, e.target.value)}
+                        placeholder={`Headline ${index + 1}`}
+                        className="flex-1 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                      />
+                      <span className={`text-xs ${getCharCounterClass(headline.text.length, 30)}`}>
+                        {headline.text.length}/30
+                      </span>
+                      {headlines.length > 2 && (
+                        <button
+                          type="button"
+                          onClick={() => removeHeadline(index)}
+                          className="text-red-500 hover:text-red-700 text-xl"
+                        >
+                          ×
+                        </button>
+                      )}
+                    </div>
+                  ))}
+                </div>
+                {headlines.length < 15 && (
+                  <button
+                    type="button"
+                    onClick={addHeadline}
+                    className="mt-2 text-sm text-green-600 hover:text-green-700"
+                  >
+                    + Add Headline
+                  </button>
+                )}
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">Descriptions (min 2, max 4)</label>
+                <div className="space-y-2">
+                  {descriptions.map((desc, index) => (
+                    <div key={index} className="flex items-center gap-2">
+                      <input
+                        type="text"
+                        maxLength={90}
+                        value={desc.text}
+                        onChange={(e) => updateDescription(index, e.target.value)}
+                        placeholder={`Description ${index + 1}`}
+                        className="flex-1 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                      />
+                      <span className={`text-xs ${getCharCounterClass(desc.text.length, 90)}`}>
+                        {desc.text.length}/90
+                      </span>
+                      {descriptions.length > 2 && (
+                        <button
+                          type="button"
+                          onClick={() => removeDescription(index)}
+                          className="text-red-500 hover:text-red-700 text-xl"
+                        >
+                          ×
+                        </button>
+                      )}
+                    </div>
+                  ))}
+                </div>
+                {descriptions.length < 4 && (
+                  <button
+                    type="button"
+                    onClick={addDescription}
+                    className="mt-2 text-sm text-green-600 hover:text-green-700"
+                  >
+                    + Add Description
+                  </button>
+                )}
+              </div>
+            </div>
+          </div>
+
+          {/* FINAL URL */}
+          <div className="bg-white rounded-lg shadow p-6">
+            <h2 className="text-xl font-semibold mb-4 flex items-center gap-2">
+              Final URL
+              <span className="text-xs bg-red-100 text-red-700 px-2 py-0.5 rounded">Required</span>
+            </h2>
+            
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">Final URL</label>
+              <input
+                type="url"
+                value={finalUrl}
+                onChange={(e) => setFinalUrl(e.target.value)}
+                placeholder="https://example.com/products/shoes"
+                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              />
+              <p className="text-xs text-gray-500 mt-1">Display paths will be auto-extracted from URL (max 2 path segments, 15 chars each)</p>
+            </div>
+          </div>
+
+          {/* OPTIONAL EXTENSIONS */}
+          <div className="border-t-4 border-dashed border-gray-300 pt-6">
+            <h2 className="text-2xl font-bold text-gray-700 mb-6 text-center">Optional Extensions</h2>
+          </div>
+
+          {/* PROMOTIONS */}
+          <div className="bg-white rounded-lg shadow p-6">
+            <div className="flex items-center justify-between mb-4">
+              <h2 className="text-xl font-semibold flex items-center gap-2">
+                Promotions
+                <span className="text-xs bg-gray-100 text-gray-600 px-2 py-0.5 rounded">Optional</span>
+              </h2>
+              <label className="flex items-center gap-2">
+                <input
+                  type="checkbox"
+                  checked={promoEnabled}
+                  onChange={(e) => setPromoEnabled(e.target.checked)}
+                  className="w-4 h-4"
+                />
+                <span className="text-sm">Enable</span>
+              </label>
+            </div>
+
+            {promoEnabled && (
+              <div className="space-y-4">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">Occasion</label>
+                    <select
+                      value={promoOccasion}
+                      onChange={(e) => setPromoOccasion(e.target.value)}
+                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    >
+                      <option value="">None</option>
+                      <option value="NEW_YEARS">New Year&apos;s</option>
+                      <option value="VALENTINES_DAY">Valentine&apos;s Day</option>
+                      <option value="EASTER">Easter</option>
+                      <option value="MOTHERS_DAY">Mother&apos;s Day</option>
+                      <option value="FATHERS_DAY">Father&apos;s Day</option>
+                      <option value="LABOR_DAY">Labor Day</option>
+                      <option value="BACK_TO_SCHOOL">Back to School</option>
+                      <option value="HALLOWEEN">Halloween</option>
+                      <option value="BLACK_FRIDAY">Black Friday</option>
+                      <option value="CYBER_MONDAY">Cyber Monday</option>
+                      <option value="CHRISTMAS">Christmas</option>
+                      <option value="BOXING_DAY">Boxing Day</option>
+                      <option value="INDEPENDENCE_DAY">Independence Day</option>
+                      <option value="NATIONAL_DAY">National Day</option>
+                      <option value="END_OF_SEASON">End of Season</option>
+                      <option value="WINTER_SALE">Winter Sale</option>
+                      <option value="SUMMER_SALE">Summer Sale</option>
+                      <option value="FALL_SALE">Fall Sale</option>
+                      <option value="SPRING_SALE">Spring Sale</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">Language</label>
+                    <select
+                      value={promoLanguage}
+                      onChange={(e) => setPromoLanguage(e.target.value)}
+                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    >
+                      <option value="en">English</option>
+                      <option value="es">Spanish</option>
+                      <option value="fr">French</option>
+                      <option value="de">German</option>
+                      <option value="he">Hebrew</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">Currency</label>
+                    <select
+                      value={promoCurrency}
+                      onChange={(e) => setPromoCurrency(e.target.value)}
+                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    >
+                      <option value="USD">USD</option>
+                      <option value="EUR">EUR</option>
+                      <option value="GBP">GBP</option>
+                      <option value="ILS">ILS</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">Promotion Type</label>
+                    <select
+                      value={promoDiscountType}
+                      onChange={(e) => setPromoDiscountType(e.target.value)}
+                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    >
+                      <option value="">-- Select --</option>
+                      <option value="money">Monetary Discount</option>
+                      <option value="percent">Percent Discount</option>
+                    </select>
+                  </div>
+                  {promoDiscountType === 'money' && (
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 mb-1">Amount Off</label>
+                      <input
+                        type="number"
+                        step="0.01"
+                        min="0"
+                        value={promoMoneyOff}
+                        onChange={(e) => setPromoMoneyOff(e.target.value)}
+                        placeholder="10.00"
+                        className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                      />
+                    </div>
+                  )}
+                  {promoDiscountType === 'percent' && (
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 mb-1">Percent Off (%)</label>
+                      <input
+                        type="number"
+                        min="1"
+                        max="100"
+                        value={promoPercentOff}
+                        onChange={(e) => setPromoPercentOff(e.target.value)}
+                        placeholder="20"
+                        className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                      />
+                    </div>
+                  )}
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">Item (what&apos;s being promoted)</label>
+                  <input
+                    type="text"
+                    maxLength={20}
+                    value={promoTarget}
+                    onChange={(e) => setPromoTarget(e.target.value)}
+                    placeholder="Summer Sale"
+                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  />
+                  <span className={`text-xs ${getCharCounterClass(promoTarget.length, 20)}`}>
+                    {promoTarget.length}/20
+                  </span>
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">Final URL</label>
+                  <input
+                    type="url"
+                    value={promoFinalUrl}
+                    onChange={(e) => setPromoFinalUrl(e.target.value)}
+                    placeholder="https://example.com/promo"
+                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  />
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">Promotion Details</label>
+                    <select
+                      value={promoDetailsType}
+                      onChange={(e) => setPromoDetailsType(e.target.value)}
+                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    >
+                      <option value="">None</option>
+                      <option value="code">On orders with promo code</option>
+                      <option value="minimum">On orders over</option>
+                    </select>
+                  </div>
+                  {promoDetailsType === 'code' && (
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 mb-1">Promo Code</label>
+                      <input
+                        type="text"
+                        value={promoCode}
+                        onChange={(e) => setPromoCode(e.target.value)}
+                        placeholder="SAVE20"
+                        className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                      />
+                    </div>
+                  )}
+                  {promoDetailsType === 'minimum' && (
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 mb-1">Minimum Order Amount</label>
+                      <input
+                        type="number"
+                        step="0.01"
+                        min="0"
+                        value={promoMinimum}
+                        onChange={(e) => setPromoMinimum(e.target.value)}
+                        placeholder="50.00"
+                        className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                      />
+                    </div>
+                  )}
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">Displayed Start Date</label>
+                    <input
+                      type="date"
+                      value={promoStartDate}
+                      onChange={(e) => setPromoStartDate(e.target.value)}
+                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">Displayed End Date</label>
+                    <input
+                      type="date"
+                      value={promoEndDate}
+                      onChange={(e) => setPromoEndDate(e.target.value)}
+                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    />
+                  </div>
+                </div>
+              </div>
+            )}
+          </div>
+
+          {/* PRICES */}
+          <div className="bg-white rounded-lg shadow p-6">
+            <div className="flex items-center justify-between mb-4">
+              <h2 className="text-xl font-semibold flex items-center gap-2">
+                Prices
+                <span className="text-xs bg-gray-100 text-gray-600 px-2 py-0.5 rounded">Optional</span>
+              </h2>
+              <label className="flex items-center gap-2">
+                <input
+                  type="checkbox"
+                  checked={pricesEnabled}
+                  onChange={(e) => setPricesEnabled(e.target.checked)}
+                  className="w-4 h-4"
+                />
+                <span className="text-sm">Enable</span>
+              </label>
+            </div>
+
+            {pricesEnabled && (
+              <div className="space-y-4">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">Price Type</label>
+                    <select
+                      value={priceType}
+                      onChange={(e) => setPriceType(e.target.value)}
+                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    >
+                      <option value="">-- Select --</option>
+                      <option value="BRANDS">Brands</option>
+                      <option value="EVENTS">Events</option>
+                      <option value="LOCATIONS">Locations</option>
+                      <option value="NEIGHBORHOODS">Neighborhoods</option>
+                      <option value="PRODUCT_CATEGORIES">Product Categories</option>
+                      <option value="PRODUCT_TIERS">Product Tiers</option>
+                      <option value="SERVICES">Services</option>
+                      <option value="SERVICE_CATEGORIES">Service Categories</option>
+                      <option value="SERVICE_TIERS">Service Tiers</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">Price Qualifier</label>
+                    <select
+                      value={priceQualifier}
+                      onChange={(e) => setPriceQualifier(e.target.value)}
+                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    >
+                      <option value="">None</option>
+                      <option value="FROM">From</option>
+                      <option value="UP_TO">Up To</option>
+                      <option value="AVERAGE">Average</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">Language</label>
+                    <select
+                      value={priceLanguage}
+                      onChange={(e) => setPriceLanguage(e.target.value)}
+                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    >
+                      <option value="en">English</option>
+                      <option value="es">Spanish</option>
+                      <option value="fr">French</option>
+                      <option value="de">German</option>
+                      <option value="he">Hebrew</option>
+                    </select>
+                  </div>
+                </div>
+
+                <p className="text-sm text-gray-600">Price Offerings (min 3, max 8)</p>
+                
+                {priceOfferings.map((offering, index) => (
+                  <div key={index} className="border border-gray-200 rounded-lg p-4 space-y-3">
+                    <div className="flex justify-between items-center">
+                      <span className="font-medium text-sm">Offering {index + 1}</span>
+                      {priceOfferings.length > 3 && (
+                        <button
+                          type="button"
+                          onClick={() => removePriceOffering(index)}
+                          className="text-red-500 hover:text-red-700 text-sm"
+                        >
+                          Remove
+                        </button>
+                      )}
+                    </div>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                      <div>
+                        <label className="block text-xs text-gray-600 mb-1">Header</label>
+                        <input
+                          type="text"
+                          maxLength={25}
+                          value={offering.header}
+                          onChange={(e) => updatePriceOffering(index, 'header', e.target.value)}
+                          placeholder="Basic Plan"
+                          className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        />
+                        <span className={`text-xs ${getCharCounterClass(offering.header.length, 25)}`}>
+                          {offering.header.length}/25
+                        </span>
+                      </div>
+                      <div>
+                        <label className="block text-xs text-gray-600 mb-1">Description</label>
+                        <input
+                          type="text"
+                          maxLength={25}
+                          value={offering.description}
+                          onChange={(e) => updatePriceOffering(index, 'description', e.target.value)}
+                          placeholder="Great for starters"
+                          className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        />
+                        <span className={`text-xs ${getCharCounterClass(offering.description.length, 25)}`}>
+                          {offering.description.length}/25
+                        </span>
+                      </div>
+                    </div>
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+                      <div>
+                        <label className="block text-xs text-gray-600 mb-1">Price</label>
+                        <input
+                          type="number"
+                          step="0.01"
+                          min="0"
+                          value={offering.amount}
+                          onChange={(e) => updatePriceOffering(index, 'amount', e.target.value)}
+                          placeholder="9.99"
+                          className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        />
+                      </div>
+                      <div>
+                        <label className="block text-xs text-gray-600 mb-1">Currency</label>
+                        <select
+                          value={offering.currency}
+                          onChange={(e) => updatePriceOffering(index, 'currency', e.target.value)}
+                          className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        >
+                          <option value="USD">USD</option>
+                          <option value="EUR">EUR</option>
+                          <option value="GBP">GBP</option>
+                          <option value="ILS">ILS</option>
+                        </select>
+                      </div>
+                      <div>
+                        <label className="block text-xs text-gray-600 mb-1">Unit</label>
+                        <select
+                          value={offering.unit}
+                          onChange={(e) => updatePriceOffering(index, 'unit', e.target.value)}
+                          className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        >
+                          <option value="">None</option>
+                          <option value="PER_HOUR">Per Hour</option>
+                          <option value="PER_DAY">Per Day</option>
+                          <option value="PER_WEEK">Per Week</option>
+                          <option value="PER_MONTH">Per Month</option>
+                          <option value="PER_YEAR">Per Year</option>
+                          <option value="PER_NIGHT">Per Night</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div>
+                      <label className="block text-xs text-gray-600 mb-1">Offering URL</label>
+                      <input
+                        type="url"
+                        value={offering.url}
+                        onChange={(e) => updatePriceOffering(index, 'url', e.target.value)}
+                        placeholder="https://example.com/pricing"
+                        className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                      />
+                    </div>
+                  </div>
+                ))}
+
+                {priceOfferings.length < 8 && (
+                  <button
+                    type="button"
+                    onClick={addPriceOffering}
+                    className="text-sm text-green-600 hover:text-green-700"
+                  >
+                    + Add Price Offering
+                  </button>
+                )}
+              </div>
+            )}
+          </div>
+
+          {/* CALLS */}
+          <div className="bg-white rounded-lg shadow p-6">
+            <div className="flex items-center justify-between mb-4">
+              <h2 className="text-xl font-semibold flex items-center gap-2">
+                Calls
+                <span className="text-xs bg-gray-100 text-gray-600 px-2 py-0.5 rounded">Optional</span>
+              </h2>
+              <label className="flex items-center gap-2">
+                <input
+                  type="checkbox"
+                  checked={callEnabled}
+                  onChange={(e) => setCallEnabled(e.target.checked)}
+                  className="w-4 h-4"
+                />
+                <span className="text-sm">Enable</span>
+              </label>
+            </div>
+
+            {callEnabled && (
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">Country Code</label>
+                  <select
+                    value={callCountryCode}
+                    onChange={(e) => setCallCountryCode(e.target.value)}
+                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  >
+                    <option value="US">US (+1)</option>
+                    <option value="GB">UK (+44)</option>
+                    <option value="IL">Israel (+972)</option>
+                    <option value="DE">Germany (+49)</option>
+                    <option value="FR">France (+33)</option>
+                  </select>
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">Phone Number</label>
+                  <input
+                    type="tel"
+                    value={callPhone}
+                    onChange={(e) => setCallPhone(e.target.value)}
+                    placeholder="+1-555-123-4567"
+                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  />
+                </div>
+              </div>
+            )}
+          </div>
+
+          {/* CALLOUTS */}
+          <div className="bg-white rounded-lg shadow p-6">
+            <div className="flex items-center justify-between mb-4">
+              <h2 className="text-xl font-semibold flex items-center gap-2">
+                Callouts
+                <span className="text-xs bg-gray-100 text-gray-600 px-2 py-0.5 rounded">Optional</span>
+              </h2>
+              <label className="flex items-center gap-2">
+                <input
+                  type="checkbox"
+                  checked={calloutsEnabled}
+                  onChange={(e) => setCalloutsEnabled(e.target.checked)}
+                  className="w-4 h-4"
+                />
+                <span className="text-sm">Enable</span>
+              </label>
+            </div>
+
+            {calloutsEnabled && (
+              <div className="space-y-4">
+                {callouts.map((callout, index) => (
+                  <div key={index} className="border border-gray-200 rounded-lg p-4 space-y-3">
+                    <div className="flex justify-between items-center">
+                      <div className="flex-1">
+                        <input
+                          type="text"
+                          maxLength={25}
+                          value={callout.text}
+                          onChange={(e) => updateCallout(index, 'text', e.target.value)}
+                          placeholder="Free Shipping"
+                          className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        />
+                        <span className={`text-xs ${getCharCounterClass(callout.text.length, 25)}`}>
+                          {callout.text.length}/25
+                        </span>
+                      </div>
+                      {callouts.length > 1 && (
+                        <button
+                          type="button"
+                          onClick={() => removeCallout(index)}
+                          className="ml-2 text-red-500 hover:text-red-700 text-xl"
+                        >
+                          ×
+                        </button>
+                      )}
+                    </div>
+                    <div className="grid grid-cols-2 gap-3">
+                      <div>
+                        <label className="block text-xs text-gray-600 mb-1">Start Date (optional)</label>
+                        <input
+                          type="date"
+                          value={callout.startDate}
+                          onChange={(e) => updateCallout(index, 'startDate', e.target.value)}
+                          className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        />
+                      </div>
+                      <div>
+                        <label className="block text-xs text-gray-600 mb-1">End Date (optional)</label>
+                        <input
+                          type="date"
+                          value={callout.endDate}
+                          onChange={(e) => updateCallout(index, 'endDate', e.target.value)}
+                          className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                ))}
+                <button
+                  type="button"
+                  onClick={addCallout}
+                  className="text-sm text-green-600 hover:text-green-700"
+                >
+                  + Add Callout
+                </button>
+              </div>
+            )}
+          </div>
+
+          {/* LEAD FORM */}
+          <div className="bg-white rounded-lg shadow p-6">
+            <div className="flex items-center justify-between mb-4">
+              <h2 className="text-xl font-semibold flex items-center gap-2">
+                Lead Form
+                <span className="text-xs bg-gray-100 text-gray-600 px-2 py-0.5 rounded">Optional</span>
+              </h2>
+              <label className="flex items-center gap-2">
+                <input
+                  type="checkbox"
+                  checked={leadFormEnabled}
+                  onChange={(e) => setLeadFormEnabled(e.target.checked)}
+                  className="w-4 h-4"
+                />
+                <span className="text-sm">Enable</span>
+              </label>
+            </div>
+
+            {leadFormEnabled && (
+              <div className="space-y-4">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">Business Name</label>
+                    <input
+                      type="text"
+                      maxLength={25}
+                      value={leadBusiness}
+                      onChange={(e) => setLeadBusiness(e.target.value)}
+                      placeholder="Acme Corp"
+                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    />
+                    <span className={`text-xs ${getCharCounterClass(leadBusiness.length, 25)}`}>
+                      {leadBusiness.length}/25
+                    </span>
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">Headline</label>
+                    <input
+                      type="text"
+                      maxLength={30}
+                      value={leadHeadline}
+                      onChange={(e) => setLeadHeadline(e.target.value)}
+                      placeholder="Get a Free Quote"
+                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    />
+                    <span className={`text-xs ${getCharCounterClass(leadHeadline.length, 30)}`}>
+                      {leadHeadline.length}/30
+                    </span>
+                  </div>
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">Description</label>
+                  <textarea
+                    maxLength={200}
+                    value={leadDescription}
+                    onChange={(e) => setLeadDescription(e.target.value)}
+                    rows={2}
+                    placeholder="Fill out the form to get started..."
+                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  />
+                  <span className={`text-xs ${getCharCounterClass(leadDescription.length, 200)}`}>
+                    {leadDescription.length}/200
+                  </span>
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">Privacy Policy URL</label>
+                  <input
+                    type="url"
+                    value={leadPrivacyUrl}
+                    onChange={(e) => setLeadPrivacyUrl(e.target.value)}
+                    placeholder="https://example.com/privacy"
+                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  />
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">Call to Action Type</label>
+                    <select
+                      value={leadCtaType}
+                      onChange={(e) => setLeadCtaType(e.target.value)}
+                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    >
+                      <option value="LEARN_MORE">Learn More</option>
+                      <option value="GET_QUOTE">Get Quote</option>
+                      <option value="APPLY_NOW">Apply Now</option>
+                      <option value="SIGN_UP">Sign Up</option>
+                      <option value="CONTACT_US">Contact Us</option>
+                      <option value="SUBSCRIBE">Subscribe</option>
+                      <option value="DOWNLOAD">Download</option>
+                      <option value="BOOK_NOW">Book Now</option>
+                      <option value="GET_OFFER">Get Offer</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">CTA Description</label>
+                    <input
+                      type="text"
+                      maxLength={30}
+                      value={leadCtaDesc}
+                      onChange={(e) => setLeadCtaDesc(e.target.value)}
+                      placeholder="Request your free quote today"
+                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    />
+                    <span className={`text-xs ${getCharCounterClass(leadCtaDesc.length, 30)}`}>
+                      {leadCtaDesc.length}/30
+                    </span>
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">Post-Submit Headline</label>
+                    <input
+                      type="text"
+                      maxLength={30}
+                      value={leadPostHeadline}
+                      onChange={(e) => setLeadPostHeadline(e.target.value)}
+                      placeholder="Thank you!"
+                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    />
+                    <span className={`text-xs ${getCharCounterClass(leadPostHeadline.length, 30)}`}>
+                      {leadPostHeadline.length}/30
+                    </span>
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">Post-Submit Description</label>
+                    <input
+                      type="text"
+                      maxLength={200}
+                      value={leadPostDesc}
+                      onChange={(e) => setLeadPostDesc(e.target.value)}
+                      placeholder="We'll be in touch soon"
+                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    />
+                    <span className={`text-xs ${getCharCounterClass(leadPostDesc.length, 200)}`}>
+                      {leadPostDesc.length}/200
+                    </span>
+                  </div>
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">Fields to Collect</label>
+                  <div className="grid grid-cols-2 md:grid-cols-3 gap-2">
+                    <p className="col-span-full text-xs text-gray-500 mb-1">Contact Information:</p>
+                    {['FULL_NAME', 'EMAIL', 'PHONE_NUMBER', 'COUNTRY', 'CITY', 'POSTAL_CODE', 'REGION'].map((field) => (
+                      <label key={field} className="flex items-center gap-2">
+                        <input
+                          type="checkbox"
+                          checked={leadFields.includes(field)}
+                          onChange={() => toggleLeadField(field)}
+                          className="w-4 h-4"
+                        />
+                        <span className="text-sm">{field.replace(/_/g, ' ').toLowerCase().replace(/\b\w/g, l => l.toUpperCase())}</span>
+                      </label>
+                    ))}
+                    <p className="col-span-full text-xs text-gray-500 mt-2 mb-1">Work Information:</p>
+                    {['COMPANY_NAME', 'WORK_EMAIL', 'WORK_PHONE', 'JOB_TITLE'].map((field) => (
+                      <label key={field} className="flex items-center gap-2">
+                        <input
+                          type="checkbox"
+                          checked={leadFields.includes(field)}
+                          onChange={() => toggleLeadField(field)}
+                          className="w-4 h-4"
+                        />
+                        <span className="text-sm">{field.replace(/_/g, ' ').toLowerCase().replace(/\b\w/g, l => l.toUpperCase())}</span>
+                      </label>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            )}
+          </div>
+
+          {/* MOBILE APP */}
+          <div className="bg-white rounded-lg shadow p-6">
+            <div className="flex items-center justify-between mb-4">
+              <h2 className="text-xl font-semibold flex items-center gap-2">
+                Mobile App
+                <span className="text-xs bg-gray-100 text-gray-600 px-2 py-0.5 rounded">Optional</span>
+              </h2>
+              <label className="flex items-center gap-2">
+                <input
+                  type="checkbox"
+                  checked={appEnabled}
+                  onChange={(e) => setAppEnabled(e.target.checked)}
+                  className="w-4 h-4"
+                />
+                <span className="text-sm">Enable</span>
+              </label>
+            </div>
+
+            {appEnabled && (
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">App Store</label>
+                  <select
+                    value={appStore}
+                    onChange={(e) => setAppStore(e.target.value)}
+                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  >
+                    <option value="">-- Select --</option>
+                    <option value="APPLE_APP_STORE">Apple App Store</option>
+                    <option value="GOOGLE_APP_STORE">Google Play Store</option>
+                  </select>
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">App ID</label>
+                  <input
+                    type="text"
+                    value={appId}
+                    onChange={(e) => setAppId(e.target.value)}
+                    placeholder="com.example.app"
+                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">Link Text</label>
+                  <input
+                    type="text"
+                    maxLength={25}
+                    value={appLinkText}
+                    onChange={(e) => setAppLinkText(e.target.value)}
+                    placeholder="Download Now"
+                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  />
+                  <span className={`text-xs ${getCharCounterClass(appLinkText.length, 25)}`}>
+                    {appLinkText.length}/25
+                  </span>
+                </div>
+              </div>
+            )}
+          </div>
+
+          {/* SUBMIT BUTTON */}
+          <div className="flex justify-end">
+            <button
+              type="submit"
+              className="px-6 py-3 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
             >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
+              Create Campaign
+            </button>
+          </div>
+        </form>
+      </div>
     </div>
   );
 }
