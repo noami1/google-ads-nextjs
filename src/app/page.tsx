@@ -3,6 +3,68 @@
 import { useState } from 'react';
 import { translations, Language } from './translations';
 
+interface FieldMetaProps {
+  ai?: boolean;
+  importance?: number;
+  bestPractice?: string;
+  impact?: string;
+  recommendedAmount?: string;
+  t: {
+    aiCanGenerate: string;
+    importance: string;
+    bestPractice: string;
+    impactOnResults: string;
+  };
+}
+
+function FieldMeta({ ai, importance, bestPractice, impact, recommendedAmount, t }: FieldMetaProps) {
+  if (!ai && !importance && !bestPractice && !impact && !recommendedAmount) return null;
+  
+  const getImportanceColor = (score: number) => {
+    if (score >= 10) return 'bg-red-100 text-red-700 border-red-200';
+    if (score >= 8) return 'bg-orange-100 text-orange-700 border-orange-200';
+    if (score >= 6) return 'bg-yellow-100 text-yellow-700 border-yellow-200';
+    if (score >= 4) return 'bg-blue-100 text-blue-700 border-blue-200';
+    return 'bg-gray-100 text-gray-600 border-gray-200';
+  };
+
+  return (
+    <div className="mt-2 space-y-1.5">
+      <div className="flex flex-wrap gap-2 items-center">
+        {ai && (
+          <span className="inline-flex items-center gap-1 px-2 py-0.5 text-xs font-medium bg-purple-100 text-purple-700 border border-purple-200 rounded-full">
+            ✨ {t.aiCanGenerate}
+          </span>
+        )}
+        {importance !== undefined && (
+          <span className={`inline-flex items-center gap-1 px-2 py-0.5 text-xs font-medium border rounded-full ${getImportanceColor(importance)}`}>
+            ⭐ {t.importance}: {importance}/10
+          </span>
+        )}
+        {recommendedAmount && (
+          <span className="inline-flex items-center gap-1 px-2 py-0.5 text-xs font-medium bg-green-100 text-green-700 border border-green-200 rounded-full">
+            📊 {recommendedAmount}
+          </span>
+        )}
+      </div>
+      
+      {bestPractice && (
+        <div className="text-xs bg-amber-50 border border-amber-200 rounded p-2">
+          <span className="font-semibold text-amber-800">💡 {t.bestPractice}:</span>{' '}
+          <span className="text-amber-700">{bestPractice}</span>
+        </div>
+      )}
+      
+      {impact && (
+        <div className="text-xs bg-indigo-50 border border-indigo-200 rounded p-2">
+          <span className="font-semibold text-indigo-800">📈 {t.impactOnResults}:</span>{' '}
+          <span className="text-indigo-700">{impact}</span>
+        </div>
+      )}
+    </div>
+  );
+}
+
 interface Headline {
   text: string;
 }
@@ -230,6 +292,13 @@ export default function CampaignCreationForm() {
                   placeholder={t.campaignBudget.campaignNamePlaceholder}
                   className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
+                <FieldMeta
+                  ai={t.campaignBudget.campaignNameAI}
+                  importance={t.campaignBudget.campaignNameImportance}
+                  bestPractice={t.campaignBudget.campaignNameBestPractice}
+                  impact={t.campaignBudget.campaignNameImpact}
+                  t={t}
+                />
               </div>
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">{t.campaignBudget.dailyBudget}</label>
@@ -243,6 +312,13 @@ export default function CampaignCreationForm() {
                   placeholder="10.00"
                   className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
+                <FieldMeta
+                  ai={t.campaignBudget.dailyBudgetAI}
+                  importance={t.campaignBudget.dailyBudgetImportance}
+                  bestPractice={t.campaignBudget.dailyBudgetBestPractice}
+                  impact={t.campaignBudget.dailyBudgetImpact}
+                  t={t}
+                />
               </div>
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">{t.campaignBudget.status}</label>
@@ -255,6 +331,13 @@ export default function CampaignCreationForm() {
                   <option value="PAUSED">{t.campaignBudget.statusPaused}</option>
                   <option value="ENABLED">{t.campaignBudget.statusEnabled}</option>
                 </select>
+                <FieldMeta
+                  ai={t.campaignBudget.statusAI}
+                  importance={t.campaignBudget.statusImportance}
+                  bestPractice={t.campaignBudget.statusBestPractice}
+                  impact={t.campaignBudget.statusImpact}
+                  t={t}
+                />
               </div>
             </div>
           </div>
@@ -286,6 +369,13 @@ export default function CampaignCreationForm() {
                   placeholder={t.adGroupKeywords.adGroupNamePlaceholder}
                   className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
+                <FieldMeta
+                  ai={t.adGroupKeywords.adGroupNameAI}
+                  importance={t.adGroupKeywords.adGroupNameImportance}
+                  bestPractice={t.adGroupKeywords.adGroupNameBestPractice}
+                  impact={t.adGroupKeywords.adGroupNameImpact}
+                  t={t}
+                />
               </div>
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">{t.adGroupKeywords.keywords}</label>
@@ -296,6 +386,14 @@ export default function CampaignCreationForm() {
                   rows={2}
                   placeholder={t.adGroupKeywords.keywordsPlaceholder}
                   className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                />
+                <FieldMeta
+                  ai={t.adGroupKeywords.keywordsAI}
+                  importance={t.adGroupKeywords.keywordsImportance}
+                  bestPractice={t.adGroupKeywords.keywordsBestPractice}
+                  impact={t.adGroupKeywords.keywordsImpact}
+                  recommendedAmount={t.adGroupKeywords.keywordsRecommendedAmount}
+                  t={t}
                 />
               </div>
               <div>
@@ -314,6 +412,13 @@ export default function CampaignCreationForm() {
                   />
                 </div>
                 <p className="text-xs text-gray-500 mt-1">{t.adGroupKeywords.maxCpcNote}</p>
+                <FieldMeta
+                  ai={t.adGroupKeywords.maxCpcAI}
+                  importance={t.adGroupKeywords.maxCpcImportance}
+                  bestPractice={t.adGroupKeywords.maxCpcBestPractice}
+                  impact={t.adGroupKeywords.maxCpcImpact}
+                  t={t}
+                />
               </div>
             </div>
           </div>
@@ -377,6 +482,14 @@ export default function CampaignCreationForm() {
                     {t.headlinesDescriptions.addHeadline}
                   </button>
                 )}
+                <FieldMeta
+                  ai={t.headlinesDescriptions.headlinesAI}
+                  importance={t.headlinesDescriptions.headlinesImportance}
+                  bestPractice={t.headlinesDescriptions.headlinesBestPractice}
+                  impact={t.headlinesDescriptions.headlinesImpact}
+                  recommendedAmount={t.headlinesDescriptions.headlinesRecommendedAmount}
+                  t={t}
+                />
               </div>
 
               <div>
@@ -417,6 +530,14 @@ export default function CampaignCreationForm() {
                     {t.headlinesDescriptions.addDescription}
                   </button>
                 )}
+                <FieldMeta
+                  ai={t.headlinesDescriptions.descriptionsAI}
+                  importance={t.headlinesDescriptions.descriptionsImportance}
+                  bestPractice={t.headlinesDescriptions.descriptionsBestPractice}
+                  impact={t.headlinesDescriptions.descriptionsImpact}
+                  recommendedAmount={t.headlinesDescriptions.descriptionsRecommendedAmount}
+                  t={t}
+                />
               </div>
             </div>
           </div>
@@ -445,6 +566,13 @@ export default function CampaignCreationForm() {
                 className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
               />
               <p className="text-xs text-gray-500 mt-1">{t.finalUrl.note}</p>
+              <FieldMeta
+                ai={t.finalUrl.urlAI}
+                importance={t.finalUrl.urlImportance}
+                bestPractice={t.finalUrl.urlBestPractice}
+                impact={t.finalUrl.urlImpact}
+                t={t}
+              />
             </div>
           </div>
 
@@ -482,7 +610,14 @@ export default function CampaignCreationForm() {
                     <strong>{t.promotions.whyUseIt}</strong> {t.promotions.whyUseItText}
                   </p>
                 </div>
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <FieldMeta
+                  ai={t.promotions.sectionAI}
+                  importance={t.promotions.sectionImportance}
+                  bestPractice={t.promotions.sectionBestPractice}
+                  impact={t.promotions.sectionImpact}
+                  t={t}
+                />
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4">
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-1">{t.promotions.occasion}</label>
                     <p className="text-xs text-gray-500 mb-1">{t.promotions.occasionHelp}</p>
@@ -706,7 +841,14 @@ export default function CampaignCreationForm() {
                     <strong>{t.prices.whyUseIt}</strong> {t.prices.whyUseItText}
                   </p>
                 </div>
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <FieldMeta
+                  ai={t.prices.sectionAI}
+                  importance={t.prices.sectionImportance}
+                  bestPractice={t.prices.sectionBestPractice}
+                  impact={t.prices.sectionImpact}
+                  t={t}
+                />
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4">
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-1">{t.prices.priceType}</label>
                     <p className="text-xs text-gray-500 mb-1">{t.prices.priceTypeHelp}</p>
@@ -897,7 +1039,14 @@ export default function CampaignCreationForm() {
                     <strong>{t.calls.whyUseIt}</strong> {t.calls.whyUseItText}
                   </p>
                 </div>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <FieldMeta
+                  ai={t.calls.sectionAI}
+                  importance={t.calls.sectionImportance}
+                  bestPractice={t.calls.sectionBestPractice}
+                  impact={t.calls.sectionImpact}
+                  t={t}
+                />
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-1">{t.calls.countryCode}</label>
                     <p className="text-xs text-gray-500 mb-1">{t.calls.countryCodeHelp}</p>
@@ -958,6 +1107,14 @@ export default function CampaignCreationForm() {
                     <strong>{t.callouts.whyUseIt}</strong> {t.callouts.whyUseItText}
                   </p>
                 </div>
+                <FieldMeta
+                  ai={t.callouts.sectionAI}
+                  importance={t.callouts.sectionImportance}
+                  bestPractice={t.callouts.sectionBestPractice}
+                  impact={t.callouts.sectionImpact}
+                  recommendedAmount={t.callouts.calloutsRecommendedAmount}
+                  t={t}
+                />
                 {callouts.map((callout, index) => (
                   <div key={index} className="border border-gray-200 rounded-lg p-4 space-y-3">
                     <div className="flex justify-between items-center">
@@ -1046,7 +1203,14 @@ export default function CampaignCreationForm() {
                     <strong>{t.leadForm.whyUseIt}</strong> {t.leadForm.whyUseItText}
                   </p>
                 </div>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <FieldMeta
+                  ai={t.leadForm.sectionAI}
+                  importance={t.leadForm.sectionImportance}
+                  bestPractice={t.leadForm.sectionBestPractice}
+                  impact={t.leadForm.sectionImpact}
+                  t={t}
+                />
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-1">{t.leadForm.businessName}</label>
                     <p className="text-xs text-gray-500 mb-1">{t.leadForm.businessNameHelp}</p>
@@ -1242,7 +1406,14 @@ export default function CampaignCreationForm() {
                     <strong>{t.mobileApp.whyUseIt}</strong> {t.mobileApp.whyUseItText}
                   </p>
                 </div>
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <FieldMeta
+                  ai={t.mobileApp.sectionAI}
+                  importance={t.mobileApp.sectionImportance}
+                  bestPractice={t.mobileApp.sectionBestPractice}
+                  impact={t.mobileApp.sectionImpact}
+                  t={t}
+                />
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4">
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-1">{t.mobileApp.appStore}</label>
                     <p className="text-xs text-gray-500 mb-1">{t.mobileApp.appStoreHelp}</p>

@@ -4,8 +4,11 @@ export const translations = {
     required: "Required",
     optional: "Optional",
     enable: "Enable",
+    aiCanGenerate: "AI can generate",
+    importance: "Importance",
+    bestPractice: "Best Practice",
+    impactOnResults: "Impact on Results",
     
-    // Campaign & Budget
     campaignBudget: {
       title: "Campaign & Budget",
       description: "A campaign is like a folder that holds all your ads. Think of it as your advertising project. The budget is how much money you want to spend each day - you'll never be charged more than this amount on average.",
@@ -16,17 +19,28 @@ export const translations = {
       campaignName: "Campaign Name",
       campaignNameHelp: "Give your campaign a name you'll recognize later. Example: \"Summer Sale 2024\" or \"Website Traffic - January\"",
       campaignNamePlaceholder: "My Campaign",
+      campaignNameAI: true,
+      campaignNameImportance: 3,
+      campaignNameBestPractice: "Use a clear naming convention: [Goal] - [Product/Service] - [Date/Season]. Example: 'Leads - Dental Services - Q1 2024'. This helps when managing multiple campaigns.",
+      campaignNameImpact: "No direct impact on ad performance, but poor naming makes campaign management chaotic. You'll waste time finding campaigns and may make costly mistakes.",
       
       dailyBudget: "Daily Budget (USD)",
       dailyBudgetHelp: "The maximum you want to spend per day. Start small ($5-10) to test, then increase once you see results.",
+      dailyBudgetAI: false,
+      dailyBudgetImportance: 10,
+      dailyBudgetBestPractice: "Start with $10-20/day for testing. Once you identify winning keywords (after 1-2 weeks), increase budget on performers. Never set budget lower than 10x your target CPC.",
+      dailyBudgetImpact: "Critical! Too low = not enough data to optimize. Too high = wasted spend before learning what works. Budget directly controls your reach and how fast you learn.",
       
       status: "Status",
       statusHelp: "\"Paused\" means your ads won't show yet. We recommend starting paused so you can review everything first.",
       statusPaused: "Paused",
       statusEnabled: "Enabled",
+      statusAI: false,
+      statusImportance: 5,
+      statusBestPractice: "Always start PAUSED. Review all settings, check landing page works, verify tracking is set up. Enable only when everything is confirmed.",
+      statusImpact: "Starting enabled without review can waste budget on mistakes. Pausing lets you catch errors before spending money.",
     },
     
-    // Ad Group & Keywords
     adGroupKeywords: {
       title: "Ad Group & Keywords",
       whatIsThis: "What is this?",
@@ -39,17 +53,29 @@ export const translations = {
       adGroupName: "Ad Group Name",
       adGroupNameHelp: "A name to organize your keywords. Example: \"Running Shoes\" or \"Free Consultation\"",
       adGroupNamePlaceholder: "My Ad Group",
+      adGroupNameAI: true,
+      adGroupNameImportance: 4,
+      adGroupNameBestPractice: "Name after the theme of keywords inside. Keep ad groups tightly themed (5-20 related keywords each). Example: 'Running Shoes - Men' separate from 'Running Shoes - Women'.",
+      adGroupNameImpact: "Good organization = easier optimization. You can pause underperforming groups and boost winners. Messy structure hides insights.",
       
       keywords: "Keywords (comma-separated)",
       keywordsHelp: "Enter the words people might search for when looking for your product or service. Separate each keyword with a comma. Think: \"What would my customers type into Google?\"",
       keywordsPlaceholder: "keyword 1, keyword 2, keyword 3",
+      keywordsAI: true,
+      keywordsImportance: 10,
+      keywordsBestPractice: "Start with 10-20 keywords per ad group. Mix broad terms ('running shoes') with specific ('nike air max size 10'). Include buying-intent words: 'buy', 'price', 'near me', 'best'. Avoid single words - too broad!",
+      keywordsImpact: "THE most important factor! Wrong keywords = showing ads to wrong people = wasted money. Right keywords = qualified traffic = conversions. This makes or breaks your campaign.",
+      keywordsRecommendedAmount: "10-20 keywords per ad group. More isn't better - focused is better.",
       
       maxCpc: "Max CPC (USD)",
       maxCpcHelp: "CPC = Cost Per Click. This is the maximum you're willing to pay when someone clicks your ad. You only pay when someone actually clicks - not just when they see it. Start with $1-2 and adjust later.",
       maxCpcNote: "Will be automatically converted to your account's currency.",
+      maxCpcAI: false,
+      maxCpcImportance: 8,
+      maxCpcBestPractice: "Research competitor bids using Google Keyword Planner. Start at suggested bid amount. For competitive industries, bid 10-20% higher to get visibility. Monitor and adjust weekly based on position and conversions.",
+      maxCpcImpact: "Too low = your ads don't show (competitors outbid you). Too high = you pay more than necessary. Finding the sweet spot maximizes visibility while controlling costs.",
     },
     
-    // Headlines & Descriptions
     headlinesDescriptions: {
       title: "Headlines & Descriptions",
       whatIsThis: "What is this?",
@@ -67,14 +93,23 @@ export const translations = {
       headlinesHelp: "Short, punchy titles that grab attention. Tips: Include your main benefit, use action words, mention your brand. Keep each under 30 characters.",
       headlinePlaceholder: "Headline",
       addHeadline: "+ Add Headline",
+      headlinesAI: true,
+      headlinesImportance: 10,
+      headlinesBestPractice: "Provide 8-15 headlines for best results. Include: 1-2 with your brand name, 2-3 with main keywords, 2-3 with benefits ('Save 50%', 'Free Shipping'), 2-3 with calls to action ('Shop Now', 'Get Quote'). Make each unique!",
+      headlinesImpact: "Headlines are what people see first and decide whether to click. More variety = more testing = Google finds winners faster. Poor headlines = low click rates = higher costs.",
+      headlinesRecommendedAmount: "Minimum 8, ideally 12-15 headlines. Google needs variety to optimize.",
       
       descriptionsLabel: "Descriptions (min 2, max 4)",
       descriptionsHelp: "More space to explain what you offer. Include: what makes you different, why choose you, what action to take. Keep each under 90 characters.",
       descriptionPlaceholder: "Description",
       addDescription: "+ Add Description",
+      descriptionsAI: true,
+      descriptionsImportance: 9,
+      descriptionsBestPractice: "Use all 4 descriptions. Each should work standalone. Include: unique selling points, social proof ('10,000+ customers'), urgency ('Limited time'), clear CTA ('Call today for free quote'). Don't repeat headlines.",
+      descriptionsImpact: "Descriptions seal the deal after headlines grab attention. They answer 'Why should I click?' Weak descriptions = low conversion even with good headlines.",
+      descriptionsRecommendedAmount: "Always use all 4 descriptions. More testing options = better performance.",
     },
     
-    // Final URL
     finalUrl: {
       title: "Final URL",
       whatIsThis: "What is this?",
@@ -86,15 +121,19 @@ export const translations = {
       help: "The webpage people land on after clicking your ad. Make sure it matches what your ad promises!",
       placeholder: "https://example.com/products/shoes",
       note: "Display paths will be auto-extracted from URL (max 2 path segments, 15 chars each)",
+      urlAI: false,
+      urlImportance: 10,
+      urlBestPractice: "Send users to the most relevant page - NOT your homepage! If ad is about 'red running shoes', link to red running shoes page. Page must load fast (<3 seconds), be mobile-friendly, and have clear call-to-action.",
+      urlImpact: "Landing page relevance affects Quality Score (determines your ad cost and position). Wrong page = high bounce rate = wasted clicks = Google penalizes you with higher costs.",
     },
     
-    // Optional Extensions
     optionalExtensions: {
       title: "Optional Extensions",
       description: "Extensions add extra information to your ads, making them bigger and more useful. Ads with extensions typically get 10-15% more clicks. These are optional but highly recommended!",
+      overallImportance: 8,
+      overallImpact: "Extensions increase your ad's size and visibility on the search results page. More real estate = more clicks. They also improve Quality Score, potentially lowering your costs.",
     },
     
-    // Promotions
     promotions: {
       title: "Promotions",
       whatIsThis: "What is this?",
@@ -103,10 +142,17 @@ export const translations = {
       exampleText: "\"20% off - Use code SAVE20\" or \"Black Friday Sale - Up to 50% off\"",
       whyUseIt: "Why use it:",
       whyUseItText: "Promotions catch the eye and create urgency. People are more likely to click when they see a deal!",
+      sectionAI: true,
+      sectionImportance: 7,
+      sectionBestPractice: "Use promotions when you have genuine offers. Align with holidays/seasons for relevance. Keep discount meaningful (10%+ or specific dollar amount). Always set end dates to create urgency.",
+      sectionImpact: "Promotions can increase click-through rates by 10-20%. The urgency of a limited offer drives immediate action. However, fake or always-on 'sales' erode trust.",
       
       occasion: "Occasion",
       occasionHelp: "Link your promotion to a holiday or event for extra relevance.",
       occasionNone: "None",
+      occasionAI: true,
+      occasionImportance: 5,
+      occasionBestPractice: "Match real calendar events. Prepare promotions 2-3 weeks before major holidays. 'Back to School' in August, 'Black Friday' in November. Don't force irrelevant occasions.",
       
       language: "Language",
       languageHelp: "The language of your promotion text.",
@@ -117,12 +163,18 @@ export const translations = {
       promotionTypeSelect: "-- Select --",
       monetaryDiscount: "Monetary Discount",
       percentDiscount: "Percent Discount",
+      promotionTypeAI: false,
+      promotionTypeImportance: 6,
+      promotionTypeBestPractice: "Use percentage for high-priced items ('20% off $500 = $100 savings sounds big'). Use monetary for low-priced items ('$5 off' is clearer than '10% off $50'). Test both to see what your audience prefers.",
       
       amountOff: "Amount Off",
       percentOff: "Percent Off (%)",
       
       item: "Item (what's being promoted)",
       itemPlaceholder: "Summer Sale",
+      itemAI: true,
+      itemImportance: 6,
+      itemBestPractice: "Be specific: 'All Running Shoes' is better than 'Products'. Keep it short but descriptive. Should match your ad's focus.",
       
       finalUrl: "Final URL",
       finalUrlPlaceholder: "https://example.com/promo",
@@ -134,14 +186,18 @@ export const translations = {
       
       promoCode: "Promo Code",
       promoCodePlaceholder: "SAVE20",
+      promoCodeAI: true,
+      promoCodeImportance: 5,
+      promoCodeBestPractice: "Make codes memorable and relevant: 'SUMMER20', 'WELCOME10'. Avoid random strings. Codes increase tracking accuracy but add friction - test with and without.",
       
       minimumOrder: "Minimum Order Amount",
       
       startDate: "Displayed Start Date",
       endDate: "Displayed End Date",
+      datesImportance: 6,
+      datesBestPractice: "Always set end dates to create urgency. 3-7 day windows work best. 'Ending Sunday!' drives action better than open-ended promotions.",
     },
     
-    // Prices
     prices: {
       title: "Prices",
       whatIsThis: "What is this?",
@@ -150,6 +206,10 @@ export const translations = {
       exampleText: "A restaurant could show \"Lunch Special - $12\", \"Dinner Menu - $25\", \"Catering - From $100\"",
       whyUseIt: "Why use it:",
       whyUseItText: "Price transparency builds trust. People can see if you fit their budget before clicking, leading to more qualified leads.",
+      sectionAI: true,
+      sectionImportance: 6,
+      sectionBestPractice: "Show your most popular or competitive offerings. Include a range (cheap to premium) to appeal to different budgets. Always keep prices updated - wrong prices destroy trust.",
+      sectionImpact: "Pre-qualifies clicks by budget. People who click already know your price = higher intent = better conversion rates. Reduces wasted clicks from people who can't afford you.",
       
       priceType: "Price Type",
       priceTypeHelp: "What category are you showing prices for?",
@@ -160,17 +220,25 @@ export const translations = {
       qualifierFrom: "From",
       qualifierUpTo: "Up To",
       qualifierAverage: "Average",
+      qualifierImportance: 5,
+      qualifierBestPractice: "'From' works well for variable pricing (services). 'Average' builds trust for consistent pricing. 'Up To' is good for max budgets or discounts.",
       
       language: "Language",
       
       offeringsLabel: "Price Offerings (min 3, max 8)",
       offeringTitle: "Offering",
+      offeringsAI: true,
+      offeringsImportance: 7,
+      offeringsBestPractice: "Use 5-8 offerings for best results. Include your best sellers, various price points, and your most competitive offers. Order from lowest to highest or by popularity.",
+      offeringsRecommendedAmount: "5-8 offerings. Minimum 3 required. More options = more chances to match what users are looking for.",
       
       header: "Header",
       headerPlaceholder: "Basic Plan",
+      headerAI: true,
       
       offeringDescription: "Description",
       descriptionPlaceholder: "Great for starters",
+      descriptionAI: true,
       
       price: "Price",
       pricePlaceholder: "9.99",
@@ -191,13 +259,16 @@ export const translations = {
       remove: "Remove",
     },
     
-    // Calls
     calls: {
       title: "Calls",
       whatIsThis: "What is this?",
       description: "Add a clickable phone number to your ad. On mobile, people can call you with one tap!",
       whyUseIt: "Why use it:",
       whyUseItText: "Perfect if phone calls are valuable to your business (restaurants, services, support). Makes it instant and easy for customers to reach you.",
+      sectionAI: false,
+      sectionImportance: 8,
+      sectionBestPractice: "Use for businesses where calls drive revenue (local services, appointments, high-value sales). Ensure someone answers during business hours. Set call hours to match availability.",
+      sectionImpact: "Call extensions can increase click-through rate by 4-5%. For service businesses, a phone call is often worth 10x a website visit. Direct line to sales!",
       
       countryCode: "Country Code",
       countryCodeHelp: "Select your phone number's country.",
@@ -205,9 +276,10 @@ export const translations = {
       phoneNumber: "Phone Number",
       phoneNumberHelp: "Your business phone number that customers will call.",
       phonePlaceholder: "+1-555-123-4567",
+      phoneImportance: 8,
+      phoneBestPractice: "Use a trackable number if possible. Answer professionally with business name. Have trained staff ready. Track calls to measure ROI.",
     },
     
-    // Callouts
     callouts: {
       title: "Callouts",
       whatIsThis: "What is this?",
@@ -216,14 +288,22 @@ export const translations = {
       examplesText: "\"Free Shipping\", \"24/7 Support\", \"Money-Back Guarantee\", \"Family Owned Since 1990\"",
       whyUseIt: "Why use it:",
       whyUseItText: "Callouts let you highlight what makes you special without taking up headline space. They build trust and differentiate you from competitors.",
+      sectionAI: true,
+      sectionImportance: 8,
+      sectionBestPractice: "Add 6-8 callouts minimum. Include: trust builders ('Money-Back Guarantee'), unique benefits ('Free Same-Day Delivery'), credentials ('Certified Experts'), convenience factors ('No Appointment Needed').",
+      sectionImpact: "Callouts increase ad size and highlight differentiators. They answer objections before users even ask. 'Free Returns' removes purchase fear. '24/7 Support' builds confidence.",
+      calloutsRecommendedAmount: "6-8 callouts minimum. Google shows 2-6 at a time, so variety is key.",
       
       textPlaceholder: "Free Shipping",
+      textAI: true,
+      textImportance: 8,
+      textBestPractice: "Keep under 25 characters. Start with action words or benefits. Be specific ('Free 2-Day Shipping' beats 'Fast Shipping'). Don't duplicate headline content.",
+      
       startDate: "Start Date (optional)",
       endDate: "End Date (optional)",
       addCallout: "+ Add Callout",
     },
     
-    // Lead Form
     leadForm: {
       title: "Lead Form",
       whatIsThis: "What is this?",
@@ -232,19 +312,33 @@ export const translations = {
       howItWorksText: "User clicks your ad → form pops up → they fill it out → you receive their info instantly",
       whyUseIt: "Why use it:",
       whyUseItText: "Reduces friction - people don't need to visit your website to become a lead. Great for service businesses, consultations, quotes, and signups.",
+      sectionAI: true,
+      sectionImportance: 7,
+      sectionBestPractice: "Keep forms SHORT - 3-4 fields max. Only ask what you need to follow up. More fields = fewer submissions. Have a fast follow-up process (respond within 5 minutes for best conversion).",
+      sectionImpact: "Lead forms can 2-3x your lead volume by removing website friction. Quality may be lower than website leads, so quick follow-up is essential. Great for mobile users.",
       
       businessName: "Business Name",
       businessNameHelp: "Your company name shown on the form.",
       businessNamePlaceholder: "Acme Corp",
+      businessNameAI: false,
+      businessNameImportance: 6,
       
       headline: "Headline",
       headlinePlaceholder: "Get a Free Quote",
+      headlineAI: true,
+      headlineImportance: 9,
+      headlineBestPractice: "Lead with value: 'Get Your Free Quote', 'Claim Your Discount', 'Book Free Consultation'. Create urgency when possible: 'Limited Spots Available'.",
       
       description2: "Description",
       descriptionPlaceholder: "Fill out the form to get started...",
+      descriptionAI: true,
+      descriptionImportance: 7,
+      descriptionBestPractice: "Explain what happens next: 'Our team will call you within 24 hours with a custom quote.' Set expectations and build trust.",
       
       privacyUrl: "Privacy Policy URL",
       privacyUrlPlaceholder: "https://example.com/privacy",
+      privacyImportance: 10,
+      privacyBestPractice: "Required by law! Link to your actual privacy policy. Not having one can get your ad disapproved and cause legal issues.",
       
       ctaType: "Call to Action Type",
       ctaLearnMore: "Learn More",
@@ -256,17 +350,26 @@ export const translations = {
       ctaDownload: "Download",
       ctaBookNow: "Book Now",
       ctaGetOffer: "Get Offer",
+      ctaImportance: 8,
+      ctaBestPractice: "Match CTA to your offer: 'Get Quote' for services, 'Book Now' for appointments, 'Download' for resources. Action-oriented CTAs outperform generic ones.",
       
       ctaDescription: "CTA Description",
       ctaDescPlaceholder: "Request your free quote today",
+      ctaDescAI: true,
       
       postSubmitHeadline: "Post-Submit Headline",
       postSubmitHeadlinePlaceholder: "Thank you!",
+      postSubmitAI: true,
+      postSubmitImportance: 6,
+      postSubmitBestPractice: "Confirm submission ('Thank You!'), set expectations ('We'll call within 24 hours'), provide next step ('Check your email for confirmation').",
       
       postSubmitDescription: "Post-Submit Description",
       postSubmitDescPlaceholder: "We'll be in touch soon",
       
       fieldsToCollect: "Fields to Collect",
+      fieldsImportance: 9,
+      fieldsBestPractice: "Less is more! Every field reduces submissions by ~10%. Essential only: Name, Email or Phone. Add more only if absolutely needed for follow-up.",
+      fieldsImpact: "3 fields: ~50% completion rate. 5 fields: ~30% completion rate. 7+ fields: <20% completion rate. Each extra field has a real cost!",
       contactInfo: "Contact Information:",
       workInfo: "Work Information:",
       
@@ -283,13 +386,16 @@ export const translations = {
       fieldJobTitle: "Job Title",
     },
     
-    // Mobile App
     mobileApp: {
       title: "Mobile App",
       whatIsThis: "What is this?",
       description: "Add a link to download your mobile app directly from your ad. Shows an app icon and download button.",
       whyUseIt: "Why use it:",
       whyUseItText: "Drive app installs alongside your regular ad. Perfect if you have an app and want to grow your user base.",
+      sectionAI: false,
+      sectionImportance: 5,
+      sectionBestPractice: "Only use if you have a quality app with good ratings (4+ stars). Link goes directly to app store. Works best for businesses where app engagement is key (retail, food delivery, banking).",
+      sectionImpact: "Adds another conversion path. App users typically have 3x higher lifetime value than web-only customers. But only if your app is good - bad apps hurt brand perception.",
       
       appStore: "App Store",
       appStoreHelp: "Where is your app available?",
@@ -299,17 +405,20 @@ export const translations = {
       
       appId: "App ID",
       appIdPlaceholder: "com.example.app",
+      appIdImportance: 10,
+      appIdBestPractice: "Get exact app ID from your app store listing. Wrong ID = broken link = wasted clicks. Test the link before launching.",
       
       linkText: "Link Text",
       linkTextPlaceholder: "Download Now",
+      linkTextAI: true,
+      linkTextImportance: 6,
+      linkTextBestPractice: "Action-oriented: 'Download Free App', 'Get the App', 'Install Now'. Mention 'Free' if applicable - removes hesitation.",
     },
     
-    // Submit
     submit: {
       createCampaign: "Create Campaign",
     },
     
-    // Languages
     languages: {
       english: "English",
       spanish: "Spanish",
@@ -318,7 +427,6 @@ export const translations = {
       hebrew: "Hebrew",
     },
     
-    // Occasions
     occasions: {
       newYears: "New Year's",
       valentinesDay: "Valentine's Day",
@@ -341,7 +449,6 @@ export const translations = {
       springSale: "Spring Sale",
     },
     
-    // Price Types
     priceTypes: {
       brands: "Brands",
       events: "Events",
@@ -354,7 +461,6 @@ export const translations = {
       serviceTiers: "Service Tiers",
     },
     
-    // Countries
     countries: {
       us: "US (+1)",
       uk: "UK (+44)",
@@ -363,7 +469,6 @@ export const translations = {
       france: "France (+33)",
     },
     
-    // Currencies
     currencies: {
       usd: "USD",
       eur: "EUR",
@@ -377,8 +482,11 @@ export const translations = {
     required: "חובה",
     optional: "אופציונלי",
     enable: "הפעל",
+    aiCanGenerate: "AI יכול ליצור",
+    importance: "חשיבות",
+    bestPractice: "שיטה מומלצת",
+    impactOnResults: "השפעה על התוצאות",
     
-    // Campaign & Budget
     campaignBudget: {
       title: "קמפיין ותקציב",
       description: "קמפיין הוא כמו תיקייה שמכילה את כל המודעות שלך. חשוב על זה כפרויקט הפרסום שלך. התקציב הוא כמה כסף אתה רוצה להוציא כל יום - לעולם לא תחויב יותר מהסכום הזה בממוצע.",
@@ -389,17 +497,28 @@ export const translations = {
       campaignName: "שם הקמפיין",
       campaignNameHelp: "תן לקמפיין שם שתזהה אותו אחר כך. לדוגמה: \"מבצע קיץ 2024\" או \"תנועה לאתר - ינואר\"",
       campaignNamePlaceholder: "הקמפיין שלי",
+      campaignNameAI: true,
+      campaignNameImportance: 3,
+      campaignNameBestPractice: "השתמש במוסכמת שמות ברורה: [מטרה] - [מוצר/שירות] - [תאריך/עונה]. לדוגמה: 'לידים - שירותי שיניים - Q1 2024'. זה עוזר בניהול קמפיינים מרובים.",
+      campaignNameImpact: "אין השפעה ישירה על ביצועי המודעה, אבל שמות גרועים הופכים את ניהול הקמפיינים לכאוטי. תבזבז זמן במציאת קמפיינים ועלול לעשות טעויות יקרות.",
       
       dailyBudget: "תקציב יומי (דולר)",
       dailyBudgetHelp: "המקסימום שאתה רוצה להוציא ביום. התחל קטן ($5-10) לבדיקה, ואז הגדל כשתראה תוצאות.",
+      dailyBudgetAI: false,
+      dailyBudgetImportance: 10,
+      dailyBudgetBestPractice: "התחל עם $10-20 ליום לבדיקה. ברגע שתזהה מילות מפתח מנצחות (אחרי 1-2 שבועות), הגדל תקציב על המצליחים. לעולם אל תגדיר תקציב נמוך מ-10 פעמים ה-CPC היעד שלך.",
+      dailyBudgetImpact: "קריטי! נמוך מדי = לא מספיק נתונים לאופטימיזציה. גבוה מדי = בזבוז לפני שלמדת מה עובד. התקציב שולט ישירות בטווח ההגעה ובמהירות הלמידה.",
       
       status: "סטטוס",
       statusHelp: "\"מושהה\" אומר שהמודעות שלך עוד לא יופיעו. אנחנו ממליצים להתחיל מושהה כדי שתוכל לבדוק הכל קודם.",
       statusPaused: "מושהה",
       statusEnabled: "פעיל",
+      statusAI: false,
+      statusImportance: 5,
+      statusBestPractice: "תמיד התחל מושהה. בדוק את כל ההגדרות, וודא שדף הנחיתה עובד, אשר שהמעקב מוגדר. הפעל רק כשהכל מאושר.",
+      statusImpact: "התחלה פעילה ללא בדיקה יכולה לבזבז תקציב על טעויות. השהייה מאפשרת לתפוס שגיאות לפני הוצאת כסף.",
     },
     
-    // Ad Group & Keywords
     adGroupKeywords: {
       title: "קבוצת מודעות ומילות מפתח",
       whatIsThis: "מה זה?",
@@ -412,17 +531,29 @@ export const translations = {
       adGroupName: "שם קבוצת המודעות",
       adGroupNameHelp: "שם לארגון מילות המפתח שלך. לדוגמה: \"נעלי ריצה\" או \"ייעוץ חינם\"",
       adGroupNamePlaceholder: "קבוצת המודעות שלי",
+      adGroupNameAI: true,
+      adGroupNameImportance: 4,
+      adGroupNameBestPractice: "קרא על שם הנושא של מילות המפתח בפנים. שמור קבוצות מודעות ממוקדות (5-20 מילות מפתח קשורות כל אחת). לדוגמה: 'נעלי ריצה - גברים' נפרד מ'נעלי ריצה - נשים'.",
+      adGroupNameImpact: "ארגון טוב = אופטימיזציה קלה יותר. אתה יכול להשהות קבוצות שלא מבצעות ולהגביר מנצחים. מבנה מבולגן מסתיר תובנות.",
       
       keywords: "מילות מפתח (מופרדות בפסיק)",
       keywordsHelp: "הכנס את המילים שאנשים עשויים לחפש כשהם מחפשים את המוצר או השירות שלך. הפרד כל מילת מפתח בפסיק. חשוב: \"מה הלקוחות שלי היו מקלידים בגוגל?\"",
       keywordsPlaceholder: "מילת מפתח 1, מילת מפתח 2, מילת מפתח 3",
+      keywordsAI: true,
+      keywordsImportance: 10,
+      keywordsBestPractice: "התחל עם 10-20 מילות מפתח לקבוצת מודעות. ערבב מונחים רחבים ('נעלי ריצה') עם ספציפיים ('נייק אייר מקס מידה 42'). כלול מילות כוונת קנייה: 'לקנות', 'מחיר', 'בקרבתי', 'הכי טוב'. הימנע ממילים בודדות - רחב מדי!",
+      keywordsImpact: "הגורם הכי חשוב! מילות מפתח שגויות = הצגת מודעות לאנשים לא נכונים = בזבוז כסף. מילות מפתח נכונות = תנועה ממוקדת = המרות. זה עושה או שובר את הקמפיין.",
+      keywordsRecommendedAmount: "10-20 מילות מפתח לקבוצת מודעות. יותר זה לא טוב יותר - ממוקד זה טוב יותר.",
       
       maxCpc: "מקסימום לקליק (דולר)",
       maxCpcHelp: "CPC = עלות לקליק. זה המקסימום שאתה מוכן לשלם כשמישהו לוחץ על המודעה שלך. אתה משלם רק כשמישהו באמת לוחץ - לא רק כשהוא רואה את זה. התחל עם $1-2 והתאם אחר כך.",
       maxCpcNote: "יומר אוטומטית למטבע של החשבון שלך.",
+      maxCpcAI: false,
+      maxCpcImportance: 8,
+      maxCpcBestPractice: "חקור הצעות מתחרים באמצעות Google Keyword Planner. התחל בסכום ההצעה המומלץ. לתעשיות תחרותיות, הצע 10-20% יותר לקבלת נראות. עקוב והתאם שבועית לפי מיקום והמרות.",
+      maxCpcImpact: "נמוך מדי = המודעות שלך לא מופיעות (מתחרים מציעים יותר). גבוה מדי = אתה משלם יותר מהנדרש. מציאת הנקודה המתוקה ממקסמת נראות תוך שליטה בעלויות.",
     },
     
-    // Headlines & Descriptions
     headlinesDescriptions: {
       title: "כותרות ותיאורים",
       whatIsThis: "מה זה?",
@@ -440,14 +571,23 @@ export const translations = {
       headlinesHelp: "כותרות קצרות וקולעות שתופסות תשומת לב. טיפים: כלול את היתרון העיקרי שלך, השתמש במילות פעולה, הזכר את המותג שלך. שמור על פחות מ-30 תווים לכל אחת.",
       headlinePlaceholder: "כותרת",
       addHeadline: "+ הוסף כותרת",
+      headlinesAI: true,
+      headlinesImportance: 10,
+      headlinesBestPractice: "ספק 8-15 כותרות לתוצאות הכי טובות. כלול: 1-2 עם שם המותג שלך, 2-3 עם מילות מפתח עיקריות, 2-3 עם יתרונות ('חסוך 50%', 'משלוח חינם'), 2-3 עם קריאות לפעולה ('קנה עכשיו', 'קבל הצעה'). תעשה כל אחת ייחודית!",
+      headlinesImpact: "כותרות הן מה שאנשים רואים קודם ומחליטים אם ללחוץ. יותר מגוון = יותר בדיקות = גוגל מוצאת מנצחים מהר יותר. כותרות גרועות = שיעורי קליקים נמוכים = עלויות גבוהות יותר.",
+      headlinesRecommendedAmount: "מינימום 8, אידיאלי 12-15 כותרות. גוגל צריכה מגוון לאופטימיזציה.",
       
       descriptionsLabel: "תיאורים (מינימום 2, מקסימום 4)",
       descriptionsHelp: "יותר מקום להסביר מה אתה מציע. כלול: מה מייחד אותך, למה לבחור בך, איזו פעולה לנקוט. שמור על פחות מ-90 תווים לכל אחד.",
       descriptionPlaceholder: "תיאור",
       addDescription: "+ הוסף תיאור",
+      descriptionsAI: true,
+      descriptionsImportance: 9,
+      descriptionsBestPractice: "השתמש בכל 4 התיאורים. כל אחד צריך לעבוד בנפרד. כלול: נקודות מכירה ייחודיות, הוכחה חברתית ('10,000+ לקוחות'), דחיפות ('זמן מוגבל'), CTA ברור ('התקשר היום להצעה חינם'). אל תחזור על כותרות.",
+      descriptionsImpact: "תיאורים סוגרים את העסקה אחרי שכותרות תופסות תשומת לב. הם עונים על 'למה כדאי לי ללחוץ?' תיאורים חלשים = המרה נמוכה גם עם כותרות טובות.",
+      descriptionsRecommendedAmount: "תמיד השתמש בכל 4 התיאורים. יותר אפשרויות בדיקה = ביצועים טובים יותר.",
     },
     
-    // Final URL
     finalUrl: {
       title: "כתובת URL סופית",
       whatIsThis: "מה זה?",
@@ -459,15 +599,19 @@ export const translations = {
       help: "דף האינטרנט שאנשים מגיעים אליו אחרי שהם לוחצים על המודעה שלך. וודא שהוא תואם למה שהמודעה שלך מבטיחה!",
       placeholder: "https://example.com/products/shoes",
       note: "נתיבי התצוגה יופקו אוטומטית מה-URL (מקסימום 2 מקטעי נתיב, 15 תווים כל אחד)",
+      urlAI: false,
+      urlImportance: 10,
+      urlBestPractice: "שלח משתמשים לדף הכי רלוונטי - לא לדף הבית! אם המודעה על 'נעלי ריצה אדומות', קשר לדף נעלי ריצה אדומות. הדף חייב להיטען מהר (<3 שניות), להיות ידידותי לנייד, ולהיות עם קריאה לפעולה ברורה.",
+      urlImpact: "רלוונטיות דף הנחיתה משפיעה על ציון האיכות (קובע עלות ומיקום המודעה). דף לא נכון = שיעור נטישה גבוה = קליקים מבוזבזים = גוגל מענישה אותך עם עלויות גבוהות יותר.",
     },
     
-    // Optional Extensions
     optionalExtensions: {
       title: "הרחבות אופציונליות",
       description: "הרחבות מוסיפות מידע נוסף למודעות שלך, והופכות אותן לגדולות ויותר שימושיות. מודעות עם הרחבות בדרך כלל מקבלות 10-15% יותר קליקים. אלה אופציונליות אבל מומלצות מאוד!",
+      overallImportance: 8,
+      overallImpact: "הרחבות מגדילות את גודל המודעה והנראות בתוצאות החיפוש. יותר שטח = יותר קליקים. הן גם משפרות ציון איכות, מה שעשוי להוריד את העלויות שלך.",
     },
     
-    // Promotions
     promotions: {
       title: "מבצעים",
       whatIsThis: "מה זה?",
@@ -476,10 +620,17 @@ export const translations = {
       exampleText: "\"20% הנחה - השתמש בקוד SAVE20\" או \"מבצע בלאק פריידי - עד 50% הנחה\"",
       whyUseIt: "למה להשתמש בזה:",
       whyUseItText: "מבצעים תופסים את העין ויוצרים דחיפות. אנשים יותר סביר ללחוץ כשהם רואים עסקה!",
+      sectionAI: true,
+      sectionImportance: 7,
+      sectionBestPractice: "השתמש במבצעים כשיש לך הצעות אמיתיות. התאם לחגים/עונות לרלוונטיות. שמור על הנחה משמעותית (10%+ או סכום דולר ספציפי). תמיד הגדר תאריכי סיום ליצירת דחיפות.",
+      sectionImpact: "מבצעים יכולים להגדיל שיעורי קליקים ב-10-20%. הדחיפות של הצעה מוגבלת מניעה לפעולה מיידית. עם זאת, מבצעים מזויפים או תמידיים שוחקים אמון.",
       
       occasion: "אירוע",
       occasionHelp: "קשר את המבצע שלך לחג או אירוע לרלוונטיות נוספת.",
       occasionNone: "ללא",
+      occasionAI: true,
+      occasionImportance: 5,
+      occasionBestPractice: "התאם לאירועי לוח שנה אמיתיים. הכן מבצעים 2-3 שבועות לפני חגים גדולים. 'חזרה לבית הספר' באוגוסט, 'בלאק פריידי' בנובמבר. אל תכריח אירועים לא רלוונטיים.",
       
       language: "שפה",
       languageHelp: "השפה של טקסט המבצע שלך.",
@@ -490,12 +641,18 @@ export const translations = {
       promotionTypeSelect: "-- בחר --",
       monetaryDiscount: "הנחה כספית",
       percentDiscount: "הנחה באחוזים",
+      promotionTypeAI: false,
+      promotionTypeImportance: 6,
+      promotionTypeBestPractice: "השתמש באחוזים לפריטים יקרים ('20% הנחה מ-$500 = חיסכון של $100 נשמע גדול'). השתמש בכספי לפריטים זולים ('$5 הנחה' יותר ברור מ'10% הנחה מ-$50'). בדוק את שניהם לראות מה הקהל שלך מעדיף.",
       
       amountOff: "סכום ההנחה",
       percentOff: "אחוז הנחה (%)",
       
       item: "פריט (מה מקודם)",
       itemPlaceholder: "מבצע קיץ",
+      itemAI: true,
+      itemImportance: 6,
+      itemBestPractice: "היה ספציפי: 'כל נעלי הריצה' טוב יותר מ'מוצרים'. שמור על זה קצר אבל תיאורי. צריך להתאים למיקוד המודעה שלך.",
       
       finalUrl: "כתובת URL סופית",
       finalUrlPlaceholder: "https://example.com/promo",
@@ -507,14 +664,18 @@ export const translations = {
       
       promoCode: "קוד מבצע",
       promoCodePlaceholder: "SAVE20",
+      promoCodeAI: true,
+      promoCodeImportance: 5,
+      promoCodeBestPractice: "עשה קודים קלים לזכירה ורלוונטיים: 'SUMMER20', 'WELCOME10'. הימנע ממחרוזות אקראיות. קודים מגדילים דיוק מעקב אבל מוסיפים חיכוך - בדוק עם ובלי.",
       
       minimumOrder: "סכום הזמנה מינימלי",
       
       startDate: "תאריך התחלה מוצג",
       endDate: "תאריך סיום מוצג",
+      datesImportance: 6,
+      datesBestPractice: "תמיד הגדר תאריכי סיום ליצירת דחיפות. חלונות של 3-7 ימים עובדים הכי טוב. 'מסתיים ביום ראשון!' מניע לפעולה יותר מאשר מבצעים פתוחים.",
     },
     
-    // Prices
     prices: {
       title: "מחירים",
       whatIsThis: "מה זה?",
@@ -523,6 +684,10 @@ export const translations = {
       exampleText: "מסעדה יכולה להציג \"ספיישל צהריים - 45₪\", \"תפריט ערב - 95₪\", \"קייטרינג - מ-400₪\"",
       whyUseIt: "למה להשתמש בזה:",
       whyUseItText: "שקיפות במחירים בונה אמון. אנשים יכולים לראות אם אתה מתאים לתקציב שלהם לפני שהם לוחצים, מה שמוביל ללידים יותר איכותיים.",
+      sectionAI: true,
+      sectionImportance: 6,
+      sectionBestPractice: "הצג את ההצעות הפופולריות או התחרותיות ביותר שלך. כלול טווח (זול עד פרמיום) לפנות לתקציבים שונים. תמיד שמור מחירים מעודכנים - מחירים שגויים הורסים אמון.",
+      sectionImpact: "מקדים סינון קליקים לפי תקציב. אנשים שלוחצים כבר יודעים את המחיר שלך = כוונה גבוהה יותר = שיעורי המרה טובים יותר. מפחית קליקים מבוזבזים מאנשים שלא יכולים להרשות לעצמם.",
       
       priceType: "סוג מחיר",
       priceTypeHelp: "לאיזו קטגוריה אתה מציג מחירים?",
@@ -533,17 +698,25 @@ export const translations = {
       qualifierFrom: "החל מ-",
       qualifierUpTo: "עד",
       qualifierAverage: "ממוצע",
+      qualifierImportance: 5,
+      qualifierBestPractice: "'החל מ-' עובד טוב לתמחור משתנה (שירותים). 'ממוצע' בונה אמון לתמחור עקבי. 'עד' טוב לתקציבי מקסימום או הנחות.",
       
       language: "שפה",
       
       offeringsLabel: "הצעות מחיר (מינימום 3, מקסימום 8)",
       offeringTitle: "הצעה",
+      offeringsAI: true,
+      offeringsImportance: 7,
+      offeringsBestPractice: "השתמש ב-5-8 הצעות לתוצאות הכי טובות. כלול את רבי המכר שלך, נקודות מחיר שונות, וההצעות התחרותיות ביותר שלך. סדר מהנמוך לגבוה או לפי פופולריות.",
+      offeringsRecommendedAmount: "5-8 הצעות. מינימום 3 נדרש. יותר אפשרויות = יותר סיכויים להתאים למה שמשתמשים מחפשים.",
       
       header: "כותרת",
       headerPlaceholder: "חבילה בסיסית",
+      headerAI: true,
       
       offeringDescription: "תיאור",
       descriptionPlaceholder: "מעולה למתחילים",
+      descriptionAI: true,
       
       price: "מחיר",
       pricePlaceholder: "9.99",
@@ -564,13 +737,16 @@ export const translations = {
       remove: "הסר",
     },
     
-    // Calls
     calls: {
       title: "שיחות",
       whatIsThis: "מה זה?",
       description: "הוסף מספר טלפון לחיץ למודעה שלך. בנייד, אנשים יכולים להתקשר אליך בלחיצה אחת!",
       whyUseIt: "למה להשתמש בזה:",
       whyUseItText: "מושלם אם שיחות טלפון בעלות ערך לעסק שלך (מסעדות, שירותים, תמיכה). מאפשר ללקוחות להגיע אליך מיידית ובקלות.",
+      sectionAI: false,
+      sectionImportance: 8,
+      sectionBestPractice: "השתמש לעסקים שבהם שיחות מניבות הכנסות (שירותים מקומיים, פגישות, מכירות בשווי גבוה). וודא שמישהו עונה בשעות העסקים. הגדר שעות שיחה להתאים לזמינות.",
+      sectionImpact: "הרחבות שיחה יכולות להגדיל שיעור קליקים ב-4-5%. לעסקי שירותים, שיחת טלפון לעתים קרובות שווה פי 10 מביקור באתר. קו ישיר למכירות!",
       
       countryCode: "קידומת מדינה",
       countryCodeHelp: "בחר את המדינה של מספר הטלפון שלך.",
@@ -578,9 +754,10 @@ export const translations = {
       phoneNumber: "מספר טלפון",
       phoneNumberHelp: "מספר הטלפון העסקי שלקוחות יתקשרו אליו.",
       phonePlaceholder: "+972-50-123-4567",
+      phoneImportance: 8,
+      phoneBestPractice: "השתמש במספר שניתן לעקוב אם אפשר. ענה בצורה מקצועית עם שם העסק. יש צוות מאומן מוכן. עקוב אחר שיחות למדידת ROI.",
     },
     
-    // Callouts
     callouts: {
       title: "הדגשות",
       whatIsThis: "מה זה?",
@@ -589,14 +766,22 @@ export const translations = {
       examplesText: "\"משלוח חינם\", \"תמיכה 24/7\", \"החזר כספי מובטח\", \"עסק משפחתי מאז 1990\"",
       whyUseIt: "למה להשתמש בזה:",
       whyUseItText: "הדגשות מאפשרות לך להדגיש מה מייחד אותך בלי לתפוס מקום בכותרת. הן בונות אמון ומבדילות אותך מהמתחרים.",
+      sectionAI: true,
+      sectionImportance: 8,
+      sectionBestPractice: "הוסף 6-8 הדגשות מינימום. כלול: בוני אמון ('החזר כספי מובטח'), יתרונות ייחודיים ('משלוח חינם באותו יום'), הסמכות ('מומחים מוסמכים'), גורמי נוחות ('ללא צורך בפגישה').",
+      sectionImpact: "הדגשות מגדילות את גודל המודעה ומדגישות מבדלים. הן עונות על התנגדויות לפני שמשתמשים בכלל שואלים. 'החזרות חינם' מסיר פחד מרכישה. 'תמיכה 24/7' בונה ביטחון.",
+      calloutsRecommendedAmount: "6-8 הדגשות מינימום. גוגל מציגה 2-6 בכל פעם, אז מגוון הוא מפתח.",
       
       textPlaceholder: "משלוח חינם",
+      textAI: true,
+      textImportance: 8,
+      textBestPractice: "שמור על פחות מ-25 תווים. התחל עם מילות פעולה או יתרונות. היה ספציפי ('משלוח חינם תוך יומיים' מנצח את 'משלוח מהיר'). אל תכפיל תוכן כותרות.",
+      
       startDate: "תאריך התחלה (אופציונלי)",
       endDate: "תאריך סיום (אופציונלי)",
       addCallout: "+ הוסף הדגשה",
     },
     
-    // Lead Form
     leadForm: {
       title: "טופס לידים",
       whatIsThis: "מה זה?",
@@ -605,19 +790,33 @@ export const translations = {
       howItWorksText: "משתמש לוחץ על המודעה שלך ← טופס קופץ ← הוא ממלא אותו ← אתה מקבל את המידע שלו מיידית",
       whyUseIt: "למה להשתמש בזה:",
       whyUseItText: "מפחית חיכוך - אנשים לא צריכים לבקר באתר שלך כדי להפוך ללידים. מעולה לעסקי שירותים, ייעוץ, הצעות מחיר והרשמות.",
+      sectionAI: true,
+      sectionImportance: 7,
+      sectionBestPractice: "שמור על טפסים קצרים - 3-4 שדות מקסימום. שאל רק מה שאתה צריך למעקב. יותר שדות = פחות הגשות. יש תהליך מעקב מהיר (הגב תוך 5 דקות להמרה הכי טובה).",
+      sectionImpact: "טפסי לידים יכולים להכפיל-לשלש את נפח הלידים שלך על ידי הסרת חיכוך האתר. האיכות עשויה להיות נמוכה יותר מלידים מהאתר, אז מעקב מהיר חיוני. מעולה למשתמשי נייד.",
       
       businessName: "שם העסק",
       businessNameHelp: "שם החברה שלך שמוצג בטופס.",
       businessNamePlaceholder: "חברת דוגמה",
+      businessNameAI: false,
+      businessNameImportance: 6,
       
       headline: "כותרת",
       headlinePlaceholder: "קבל הצעת מחיר חינם",
+      headlineAI: true,
+      headlineImportance: 9,
+      headlineBestPractice: "הוביל עם ערך: 'קבל הצעת מחיר חינם', 'מימוש ההנחה שלך', 'הזמן ייעוץ חינם'. צור דחיפות כשאפשר: 'מקומות מוגבלים'.",
       
       description2: "תיאור",
       descriptionPlaceholder: "מלא את הטופס להתחלה...",
+      descriptionAI: true,
+      descriptionImportance: 7,
+      descriptionBestPractice: "הסבר מה קורה הלאה: 'הצוות שלנו יתקשר אליך תוך 24 שעות עם הצעה מותאמת אישית.' הגדר ציפיות ובנה אמון.",
       
       privacyUrl: "כתובת URL של מדיניות פרטיות",
       privacyUrlPlaceholder: "https://example.com/privacy",
+      privacyImportance: 10,
+      privacyBestPractice: "נדרש על פי חוק! קשר למדיניות הפרטיות האמיתית שלך. חוסר מדיניות יכול לגרום לפסילת המודעה ולבעיות משפטיות.",
       
       ctaType: "סוג קריאה לפעולה",
       ctaLearnMore: "למד עוד",
@@ -629,17 +828,26 @@ export const translations = {
       ctaDownload: "הורד",
       ctaBookNow: "הזמן עכשיו",
       ctaGetOffer: "קבל הצעה",
+      ctaImportance: 8,
+      ctaBestPractice: "התאם CTA להצעה שלך: 'קבל הצעה' לשירותים, 'הזמן עכשיו' לפגישות, 'הורד' למשאבים. CTAs מכוונים לפעולה עולים על כלליים.",
       
       ctaDescription: "תיאור קריאה לפעולה",
       ctaDescPlaceholder: "בקש הצעת מחיר חינם היום",
+      ctaDescAI: true,
       
       postSubmitHeadline: "כותרת לאחר שליחה",
       postSubmitHeadlinePlaceholder: "תודה!",
+      postSubmitAI: true,
+      postSubmitImportance: 6,
+      postSubmitBestPractice: "אשר שליחה ('תודה!'), הגדר ציפיות ('ניצור קשר תוך 24 שעות'), ספק צעד הבא ('בדוק את האימייל לאישור').",
       
       postSubmitDescription: "תיאור לאחר שליחה",
       postSubmitDescPlaceholder: "ניצור איתך קשר בקרוב",
       
       fieldsToCollect: "שדות לאיסוף",
+      fieldsImportance: 9,
+      fieldsBestPractice: "פחות זה יותר! כל שדה מפחית הגשות ב-~10%. הכרחי בלבד: שם, אימייל או טלפון. הוסף עוד רק אם באמת נחוץ למעקב.",
+      fieldsImpact: "3 שדות: ~50% שיעור השלמה. 5 שדות: ~30% שיעור השלמה. 7+ שדות: <20% שיעור השלמה. לכל שדה נוסף יש עלות אמיתית!",
       contactInfo: "פרטי קשר:",
       workInfo: "פרטי עבודה:",
       
@@ -656,13 +864,16 @@ export const translations = {
       fieldJobTitle: "תפקיד",
     },
     
-    // Mobile App
     mobileApp: {
       title: "אפליקציה לנייד",
       whatIsThis: "מה זה?",
       description: "הוסף קישור להורדת האפליקציה לנייד שלך ישירות מהמודעה. מציג אייקון אפליקציה וכפתור הורדה.",
       whyUseIt: "למה להשתמש בזה:",
       whyUseItText: "קדם התקנות אפליקציה לצד המודעה הרגילה שלך. מושלם אם יש לך אפליקציה ואתה רוצה להגדיל את בסיס המשתמשים שלך.",
+      sectionAI: false,
+      sectionImportance: 5,
+      sectionBestPractice: "השתמש רק אם יש לך אפליקציה איכותית עם דירוגים טובים (4+ כוכבים). הקישור הולך ישירות לחנות האפליקציות. עובד הכי טוב לעסקים שבהם מעורבות אפליקציה חשובה (קמעונאות, משלוחי אוכל, בנקאות).",
+      sectionImpact: "מוסיף נתיב המרה נוסף. משתמשי אפליקציה בדרך כלל יש להם שווי לקוח לכל החיים גבוה פי 3 ממשתמשי אתר בלבד. אבל רק אם האפליקציה שלך טובה - אפליקציות גרועות פוגעות בתדמית המותג.",
       
       appStore: "חנות אפליקציות",
       appStoreHelp: "היכן האפליקציה שלך זמינה?",
@@ -672,17 +883,20 @@ export const translations = {
       
       appId: "מזהה אפליקציה",
       appIdPlaceholder: "com.example.app",
+      appIdImportance: 10,
+      appIdBestPractice: "קבל מזהה אפליקציה מדויק מרישום חנות האפליקציות שלך. מזהה שגוי = קישור שבור = קליקים מבוזבזים. בדוק את הקישור לפני השקה.",
       
       linkText: "טקסט קישור",
       linkTextPlaceholder: "הורד עכשיו",
+      linkTextAI: true,
+      linkTextImportance: 6,
+      linkTextBestPractice: "מכוון לפעולה: 'הורד אפליקציה חינם', 'קבל את האפליקציה', 'התקן עכשיו'. הזכר 'חינם' אם רלוונטי - מסיר היסוס.",
     },
     
-    // Submit
     submit: {
       createCampaign: "צור קמפיין",
     },
     
-    // Languages
     languages: {
       english: "אנגלית",
       spanish: "ספרדית",
@@ -691,7 +905,6 @@ export const translations = {
       hebrew: "עברית",
     },
     
-    // Occasions
     occasions: {
       newYears: "ראש השנה האזרחית",
       valentinesDay: "יום האהבה",
@@ -714,7 +927,6 @@ export const translations = {
       springSale: "מבצע אביב",
     },
     
-    // Price Types
     priceTypes: {
       brands: "מותגים",
       events: "אירועים",
@@ -727,7 +939,6 @@ export const translations = {
       serviceTiers: "רמות שירותים",
     },
     
-    // Countries
     countries: {
       us: "ארה\"ב (+1)",
       uk: "בריטניה (+44)",
@@ -736,7 +947,6 @@ export const translations = {
       france: "צרפת (+33)",
     },
     
-    // Currencies
     currencies: {
       usd: "דולר",
       eur: "יורו",
