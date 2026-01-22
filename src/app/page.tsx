@@ -207,14 +207,25 @@ export default function CampaignCreationForm() {
         <form onSubmit={handleSubmit} className="space-y-6">
           {/* CAMPAIGN & BUDGET */}
           <div className="bg-white rounded-lg shadow p-6">
-            <h2 className="text-xl font-semibold mb-4 flex items-center gap-2">
+            <h2 className="text-xl font-semibold mb-2 flex items-center gap-2">
               Campaign & Budget
               <span className="text-xs bg-red-100 text-red-700 px-2 py-0.5 rounded">Required</span>
             </h2>
+            <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-4">
+              <p className="text-sm text-blue-800 font-medium mb-2">What is this?</p>
+              <p className="text-sm text-blue-700">
+                A campaign is like a folder that holds all your ads. Think of it as your advertising project. 
+                The budget is how much money you want to spend each day - you&apos;ll never be charged more than this amount on average.
+              </p>
+              <p className="text-sm text-blue-700 mt-2">
+                <strong>Why it matters:</strong> Good campaign organization helps you track what&apos;s working and control your spending.
+              </p>
+            </div>
             
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">Campaign Name</label>
+                <p className="text-xs text-gray-500 mb-2">Give your campaign a name you&apos;ll recognize later. Example: &quot;Summer Sale 2024&quot; or &quot;Website Traffic - January&quot;</p>
                 <input
                   type="text"
                   value={campaignName}
@@ -225,6 +236,7 @@ export default function CampaignCreationForm() {
               </div>
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">Daily Budget (USD)</label>
+                <p className="text-xs text-gray-500 mb-2">The maximum you want to spend per day. Start small ($5-10) to test, then increase once you see results.</p>
                 <input
                   type="number"
                   step="0.01"
@@ -237,6 +249,7 @@ export default function CampaignCreationForm() {
               </div>
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">Status</label>
+                <p className="text-xs text-gray-500 mb-2">&quot;Paused&quot; means your ads won&apos;t show yet. We recommend starting paused so you can review everything first.</p>
                 <select
                   value={status}
                   onChange={(e) => setStatus(e.target.value)}
@@ -251,14 +264,28 @@ export default function CampaignCreationForm() {
 
           {/* AD GROUP & KEYWORDS */}
           <div className="bg-white rounded-lg shadow p-6">
-            <h2 className="text-xl font-semibold mb-4 flex items-center gap-2">
+            <h2 className="text-xl font-semibold mb-2 flex items-center gap-2">
               Ad Group & Keywords
               <span className="text-xs bg-red-100 text-red-700 px-2 py-0.5 rounded">Required</span>
             </h2>
+            <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-4">
+              <p className="text-sm text-blue-800 font-medium mb-2">What is this?</p>
+              <p className="text-sm text-blue-700">
+                Keywords are the words or phrases people type into Google when searching. When someone searches for your keyword, your ad can appear.
+                An ad group is a container that groups related keywords together with your ads.
+              </p>
+              <p className="text-sm text-blue-700 mt-2">
+                <strong>Example:</strong> If you sell shoes, your keywords might be &quot;buy running shoes&quot;, &quot;best sneakers&quot;, &quot;athletic footwear&quot;.
+              </p>
+              <p className="text-sm text-blue-700 mt-2">
+                <strong>Why it matters:</strong> Choosing the right keywords means your ads show to people who are actually looking for what you offer.
+              </p>
+            </div>
             
             <div className="space-y-4">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">Ad Group Name</label>
+                <p className="text-xs text-gray-500 mb-2">A name to organize your keywords. Example: &quot;Running Shoes&quot; or &quot;Free Consultation&quot;</p>
                 <input
                   type="text"
                   value={adGroupName}
@@ -269,6 +296,7 @@ export default function CampaignCreationForm() {
               </div>
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">Keywords (comma-separated)</label>
+                <p className="text-xs text-gray-500 mb-2">Enter the words people might search for when looking for your product or service. Separate each keyword with a comma. Think: &quot;What would my customers type into Google?&quot;</p>
                 <textarea
                   value={keywords}
                   onChange={(e) => setKeywords(e.target.value)}
@@ -279,6 +307,7 @@ export default function CampaignCreationForm() {
               </div>
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">Max CPC (USD)</label>
+                <p className="text-xs text-gray-500 mb-2">CPC = Cost Per Click. This is the maximum you&apos;re willing to pay when someone clicks your ad. You only pay when someone actually clicks - not just when they see it. Start with $1-2 and adjust later.</p>
                 <div className="flex items-center gap-2">
                   <span className="text-lg">$</span>
                   <input
@@ -291,21 +320,38 @@ export default function CampaignCreationForm() {
                     className="w-32 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                   />
                 </div>
-                <p className="text-xs text-gray-500 mt-1">Maximum cost-per-click bid. Will be converted to your account&apos;s currency.</p>
+                <p className="text-xs text-gray-500 mt-1">Will be automatically converted to your account&apos;s currency.</p>
               </div>
             </div>
           </div>
 
           {/* HEADLINES & DESCRIPTIONS */}
           <div className="bg-white rounded-lg shadow p-6">
-            <h2 className="text-xl font-semibold mb-4 flex items-center gap-2">
+            <h2 className="text-xl font-semibold mb-2 flex items-center gap-2">
               Headlines & Descriptions
               <span className="text-xs bg-red-100 text-red-700 px-2 py-0.5 rounded">Required</span>
             </h2>
+            <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-4">
+              <p className="text-sm text-blue-800 font-medium mb-2">What is this?</p>
+              <p className="text-sm text-blue-700">
+                This is the actual text people will see in your ad on Google. Your ad has two parts:
+              </p>
+              <ul className="text-sm text-blue-700 mt-2 list-disc list-inside space-y-1">
+                <li><strong>Headlines:</strong> The big, clickable titles at the top of your ad (shown in blue on Google)</li>
+                <li><strong>Descriptions:</strong> The smaller text below that explains your offer in more detail</li>
+              </ul>
+              <p className="text-sm text-blue-700 mt-2">
+                <strong>How it works:</strong> You provide multiple options, and Google automatically tests different combinations to find what works best. The more options you give, the better Google can optimize!
+              </p>
+              <p className="text-sm text-blue-700 mt-2">
+                <strong>Why it matters:</strong> Great ad copy = more clicks = more customers. Make it compelling!
+              </p>
+            </div>
             
             <div className="space-y-4">
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">Headlines (min 2, max 15)</label>
+                <label className="block text-sm font-medium text-gray-700 mb-1">Headlines (min 2, max 15)</label>
+                <p className="text-xs text-gray-500 mb-2">Short, punchy titles that grab attention. Tips: Include your main benefit, use action words, mention your brand. Keep each under 30 characters.</p>
                 <div className="space-y-2">
                   {headlines.map((headline, index) => (
                     <div key={index} className="flex items-center gap-2">
@@ -344,7 +390,8 @@ export default function CampaignCreationForm() {
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">Descriptions (min 2, max 4)</label>
+                <label className="block text-sm font-medium text-gray-700 mb-1">Descriptions (min 2, max 4)</label>
+                <p className="text-xs text-gray-500 mb-2">More space to explain what you offer. Include: what makes you different, why choose you, what action to take. Keep each under 90 characters.</p>
                 <div className="space-y-2">
                   {descriptions.map((desc, index) => (
                     <div key={index} className="flex items-center gap-2">
@@ -386,13 +433,23 @@ export default function CampaignCreationForm() {
 
           {/* FINAL URL */}
           <div className="bg-white rounded-lg shadow p-6">
-            <h2 className="text-xl font-semibold mb-4 flex items-center gap-2">
+            <h2 className="text-xl font-semibold mb-2 flex items-center gap-2">
               Final URL
               <span className="text-xs bg-red-100 text-red-700 px-2 py-0.5 rounded">Required</span>
             </h2>
+            <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-4">
+              <p className="text-sm text-blue-800 font-medium mb-2">What is this?</p>
+              <p className="text-sm text-blue-700">
+                This is where people go when they click your ad - your landing page. It should be relevant to your ad and keywords.
+              </p>
+              <p className="text-sm text-blue-700 mt-2">
+                <strong>Why it matters:</strong> A relevant landing page improves your ad quality score (meaning lower costs) and converts more visitors into customers.
+              </p>
+            </div>
             
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">Final URL</label>
+              <p className="text-xs text-gray-500 mb-2">The webpage people land on after clicking your ad. Make sure it matches what your ad promises!</p>
               <input
                 type="url"
                 value={finalUrl}
@@ -406,12 +463,16 @@ export default function CampaignCreationForm() {
 
           {/* OPTIONAL EXTENSIONS */}
           <div className="border-t-4 border-dashed border-gray-300 pt-6">
-            <h2 className="text-2xl font-bold text-gray-700 mb-6 text-center">Optional Extensions</h2>
+            <h2 className="text-2xl font-bold text-gray-700 mb-2 text-center">Optional Extensions</h2>
+            <p className="text-center text-gray-600 mb-6 max-w-2xl mx-auto">
+              Extensions add extra information to your ads, making them bigger and more useful. Ads with extensions typically get 10-15% more clicks. 
+              These are optional but highly recommended!
+            </p>
           </div>
 
           {/* PROMOTIONS */}
           <div className="bg-white rounded-lg shadow p-6">
-            <div className="flex items-center justify-between mb-4">
+            <div className="flex items-center justify-between mb-2">
               <h2 className="text-xl font-semibold flex items-center gap-2">
                 Promotions
                 <span className="text-xs bg-gray-100 text-gray-600 px-2 py-0.5 rounded">Optional</span>
@@ -429,9 +490,22 @@ export default function CampaignCreationForm() {
 
             {promoEnabled && (
               <div className="space-y-4">
+                <div className="bg-green-50 border border-green-200 rounded-lg p-4 mb-4">
+                  <p className="text-sm text-green-800 font-medium mb-2">What is this?</p>
+                  <p className="text-sm text-green-700">
+                    Highlight special offers, discounts, or sales directly in your ad. A promotion badge appears below your ad showing the deal.
+                  </p>
+                  <p className="text-sm text-green-700 mt-2">
+                    <strong>Example:</strong> &quot;20% off - Use code SAVE20&quot; or &quot;Black Friday Sale - Up to 50% off&quot;
+                  </p>
+                  <p className="text-sm text-green-700 mt-2">
+                    <strong>Why use it:</strong> Promotions catch the eye and create urgency. People are more likely to click when they see a deal!
+                  </p>
+                </div>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-1">Occasion</label>
+                    <p className="text-xs text-gray-500 mb-1">Link your promotion to a holiday or event for extra relevance.</p>
                     <select
                       value={promoOccasion}
                       onChange={(e) => setPromoOccasion(e.target.value)}
@@ -624,7 +698,7 @@ export default function CampaignCreationForm() {
 
           {/* PRICES */}
           <div className="bg-white rounded-lg shadow p-6">
-            <div className="flex items-center justify-between mb-4">
+            <div className="flex items-center justify-between mb-2">
               <h2 className="text-xl font-semibold flex items-center gap-2">
                 Prices
                 <span className="text-xs bg-gray-100 text-gray-600 px-2 py-0.5 rounded">Optional</span>
@@ -642,9 +716,22 @@ export default function CampaignCreationForm() {
 
             {pricesEnabled && (
               <div className="space-y-4">
+                <div className="bg-green-50 border border-green-200 rounded-lg p-4 mb-4">
+                  <p className="text-sm text-green-800 font-medium mb-2">What is this?</p>
+                  <p className="text-sm text-green-700">
+                    Show a menu of your products or services with prices directly in your ad. Each item links to its own page.
+                  </p>
+                  <p className="text-sm text-green-700 mt-2">
+                    <strong>Example:</strong> A restaurant could show &quot;Lunch Special - $12&quot;, &quot;Dinner Menu - $25&quot;, &quot;Catering - From $100&quot;
+                  </p>
+                  <p className="text-sm text-green-700 mt-2">
+                    <strong>Why use it:</strong> Price transparency builds trust. People can see if you fit their budget before clicking, leading to more qualified leads.
+                  </p>
+                </div>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-1">Price Type</label>
+                    <p className="text-xs text-gray-500 mb-1">What category are you showing prices for?</p>
                     <select
                       value={priceType}
                       onChange={(e) => setPriceType(e.target.value)}
@@ -808,7 +895,7 @@ export default function CampaignCreationForm() {
 
           {/* CALLS */}
           <div className="bg-white rounded-lg shadow p-6">
-            <div className="flex items-center justify-between mb-4">
+            <div className="flex items-center justify-between mb-2">
               <h2 className="text-xl font-semibold flex items-center gap-2">
                 Calls
                 <span className="text-xs bg-gray-100 text-gray-600 px-2 py-0.5 rounded">Optional</span>
@@ -825,30 +912,43 @@ export default function CampaignCreationForm() {
             </div>
 
             {callEnabled && (
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Country Code</label>
-                  <select
-                    value={callCountryCode}
-                    onChange={(e) => setCallCountryCode(e.target.value)}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                  >
-                    <option value="US">US (+1)</option>
-                    <option value="GB">UK (+44)</option>
-                    <option value="IL">Israel (+972)</option>
-                    <option value="DE">Germany (+49)</option>
-                    <option value="FR">France (+33)</option>
-                  </select>
+              <div className="space-y-4">
+                <div className="bg-green-50 border border-green-200 rounded-lg p-4">
+                  <p className="text-sm text-green-800 font-medium mb-2">What is this?</p>
+                  <p className="text-sm text-green-700">
+                    Add a clickable phone number to your ad. On mobile, people can call you with one tap!
+                  </p>
+                  <p className="text-sm text-green-700 mt-2">
+                    <strong>Why use it:</strong> Perfect if phone calls are valuable to your business (restaurants, services, support). Makes it instant and easy for customers to reach you.
+                  </p>
                 </div>
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Phone Number</label>
-                  <input
-                    type="tel"
-                    value={callPhone}
-                    onChange={(e) => setCallPhone(e.target.value)}
-                    placeholder="+1-555-123-4567"
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                  />
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">Country Code</label>
+                    <p className="text-xs text-gray-500 mb-1">Select your phone number&apos;s country.</p>
+                    <select
+                      value={callCountryCode}
+                      onChange={(e) => setCallCountryCode(e.target.value)}
+                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    >
+                      <option value="US">US (+1)</option>
+                      <option value="GB">UK (+44)</option>
+                      <option value="IL">Israel (+972)</option>
+                      <option value="DE">Germany (+49)</option>
+                      <option value="FR">France (+33)</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">Phone Number</label>
+                    <p className="text-xs text-gray-500 mb-1">Your business phone number that customers will call.</p>
+                    <input
+                      type="tel"
+                      value={callPhone}
+                      onChange={(e) => setCallPhone(e.target.value)}
+                      placeholder="+1-555-123-4567"
+                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    />
+                  </div>
                 </div>
               </div>
             )}
@@ -856,7 +956,7 @@ export default function CampaignCreationForm() {
 
           {/* CALLOUTS */}
           <div className="bg-white rounded-lg shadow p-6">
-            <div className="flex items-center justify-between mb-4">
+            <div className="flex items-center justify-between mb-2">
               <h2 className="text-xl font-semibold flex items-center gap-2">
                 Callouts
                 <span className="text-xs bg-gray-100 text-gray-600 px-2 py-0.5 rounded">Optional</span>
@@ -874,6 +974,18 @@ export default function CampaignCreationForm() {
 
             {calloutsEnabled && (
               <div className="space-y-4">
+                <div className="bg-green-50 border border-green-200 rounded-lg p-4">
+                  <p className="text-sm text-green-800 font-medium mb-2">What is this?</p>
+                  <p className="text-sm text-green-700">
+                    Short phrases that highlight key benefits or features. They appear as extra text below your ad.
+                  </p>
+                  <p className="text-sm text-green-700 mt-2">
+                    <strong>Examples:</strong> &quot;Free Shipping&quot;, &quot;24/7 Support&quot;, &quot;Money-Back Guarantee&quot;, &quot;Family Owned Since 1990&quot;
+                  </p>
+                  <p className="text-sm text-green-700 mt-2">
+                    <strong>Why use it:</strong> Callouts let you highlight what makes you special without taking up headline space. They build trust and differentiate you from competitors.
+                  </p>
+                </div>
                 {callouts.map((callout, index) => (
                   <div key={index} className="border border-gray-200 rounded-lg p-4 space-y-3">
                     <div className="flex justify-between items-center">
@@ -935,7 +1047,7 @@ export default function CampaignCreationForm() {
 
           {/* LEAD FORM */}
           <div className="bg-white rounded-lg shadow p-6">
-            <div className="flex items-center justify-between mb-4">
+            <div className="flex items-center justify-between mb-2">
               <h2 className="text-xl font-semibold flex items-center gap-2">
                 Lead Form
                 <span className="text-xs bg-gray-100 text-gray-600 px-2 py-0.5 rounded">Optional</span>
@@ -953,9 +1065,23 @@ export default function CampaignCreationForm() {
 
             {leadFormEnabled && (
               <div className="space-y-4">
+                <div className="bg-green-50 border border-green-200 rounded-lg p-4">
+                  <p className="text-sm text-green-800 font-medium mb-2">What is this?</p>
+                  <p className="text-sm text-green-700">
+                    A form that appears directly in your ad! People can submit their contact info (name, email, phone) without leaving Google. 
+                    You get their details as leads.
+                  </p>
+                  <p className="text-sm text-green-700 mt-2">
+                    <strong>How it works:</strong> User clicks your ad → form pops up → they fill it out → you receive their info instantly
+                  </p>
+                  <p className="text-sm text-green-700 mt-2">
+                    <strong>Why use it:</strong> Reduces friction - people don&apos;t need to visit your website to become a lead. Great for service businesses, consultations, quotes, and signups.
+                  </p>
+                </div>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-1">Business Name</label>
+                    <p className="text-xs text-gray-500 mb-1">Your company name shown on the form.</p>
                     <input
                       type="text"
                       maxLength={25}
@@ -1111,7 +1237,7 @@ export default function CampaignCreationForm() {
 
           {/* MOBILE APP */}
           <div className="bg-white rounded-lg shadow p-6">
-            <div className="flex items-center justify-between mb-4">
+            <div className="flex items-center justify-between mb-2">
               <h2 className="text-xl font-semibold flex items-center gap-2">
                 Mobile App
                 <span className="text-xs bg-gray-100 text-gray-600 px-2 py-0.5 rounded">Optional</span>
@@ -1128,10 +1254,21 @@ export default function CampaignCreationForm() {
             </div>
 
             {appEnabled && (
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">App Store</label>
-                  <select
+              <div className="space-y-4">
+                <div className="bg-green-50 border border-green-200 rounded-lg p-4">
+                  <p className="text-sm text-green-800 font-medium mb-2">What is this?</p>
+                  <p className="text-sm text-green-700">
+                    Add a link to download your mobile app directly from your ad. Shows an app icon and download button.
+                  </p>
+                  <p className="text-sm text-green-700 mt-2">
+                    <strong>Why use it:</strong> Drive app installs alongside your regular ad. Perfect if you have an app and want to grow your user base.
+                  </p>
+                </div>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">App Store</label>
+                    <p className="text-xs text-gray-500 mb-1">Where is your app available?</p>
+                    <select
                     value={appStore}
                     onChange={(e) => setAppStore(e.target.value)}
                     className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
@@ -1164,6 +1301,7 @@ export default function CampaignCreationForm() {
                   <span className={`text-xs ${getCharCounterClass(appLinkText.length, 25)}`}>
                     {appLinkText.length}/25
                   </span>
+                </div>
                 </div>
               </div>
             )}
