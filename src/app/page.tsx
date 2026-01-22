@@ -51,7 +51,7 @@ export default function CampaignCreationForm() {
   const [finalUrl, setFinalUrl] = useState('https://example.com/digital-marketing/services');
 
   // Promotions
-  const [promoEnabled, setPromoEnabled] = useState(false);
+  const [promoEnabled, setPromoEnabled] = useState(true);
   const [promoOccasion, setPromoOccasion] = useState('NEW_YEARS');
   const [promoLanguage, setPromoLanguage] = useState('en');
   const [promoCurrency, setPromoCurrency] = useState('USD');
@@ -67,7 +67,7 @@ export default function CampaignCreationForm() {
   const [promoEndDate, setPromoEndDate] = useState('');
 
   // Prices
-  const [pricesEnabled, setPricesEnabled] = useState(false);
+  const [pricesEnabled, setPricesEnabled] = useState(true);
   const [priceType, setPriceType] = useState('SERVICES');
   const [priceQualifier, setPriceQualifier] = useState('FROM');
   const [priceLanguage, setPriceLanguage] = useState('en');
@@ -78,19 +78,19 @@ export default function CampaignCreationForm() {
   ]);
 
   // Calls
-  const [callEnabled, setCallEnabled] = useState(false);
+  const [callEnabled, setCallEnabled] = useState(true);
   const [callCountryCode, setCallCountryCode] = useState('US');
   const [callPhone, setCallPhone] = useState('+1-555-123-4567');
 
   // Callouts
-  const [calloutsEnabled, setCalloutsEnabled] = useState(false);
+  const [calloutsEnabled, setCalloutsEnabled] = useState(true);
   const [callouts, setCallouts] = useState<Callout[]>([
     { text: 'Free Consultation', startDate: '', endDate: '' },
     { text: '24/7 Support', startDate: '', endDate: '' },
   ]);
 
   // Lead Form
-  const [leadFormEnabled, setLeadFormEnabled] = useState(false);
+  const [leadFormEnabled, setLeadFormEnabled] = useState(true);
   const [leadBusiness, setLeadBusiness] = useState('Digital Marketing Pro');
   const [leadHeadline, setLeadHeadline] = useState('Get Your Free Marketing Audit');
   const [leadDescription, setLeadDescription] = useState('Fill out this quick form and one of our experts will contact you within 24 hours to discuss your digital marketing needs.');
@@ -102,7 +102,7 @@ export default function CampaignCreationForm() {
   const [leadFields, setLeadFields] = useState<string[]>(['FULL_NAME', 'EMAIL', 'PHONE_NUMBER']);
 
   // Mobile App
-  const [appEnabled, setAppEnabled] = useState(false);
+  const [appEnabled, setAppEnabled] = useState(true);
   const [appStore, setAppStore] = useState('GOOGLE_APP_STORE');
   const [appId, setAppId] = useState('com.example.marketing');
   const [appLinkText, setAppLinkText] = useState('Get the App');
