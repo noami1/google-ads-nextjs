@@ -88,6 +88,13 @@ interface Callout {
   endDate: string;
 }
 
+interface Sitelink {
+  text: string;
+  url: string;
+  description1: string;
+  description2: string;
+}
+
 export default function CampaignCreationForm() {
   const [lang, setLang] = useState<Language>('en');
   const t = translations[lang];
@@ -163,6 +170,12 @@ export default function CampaignCreationForm() {
   const [appStore, setAppStore] = useState('GOOGLE_APP_STORE');
   const [appId, setAppId] = useState('com.example.marketing');
   const [appLinkText, setAppLinkText] = useState('Get the App');
+
+  const [sitelinksEnabled, setSitelinksEnabled] = useState(true);
+  const [sitelinks, setSitelinks] = useState<Sitelink[]>([
+    { text: 'About Us', url: 'https://example.com/about', description1: 'Learn more about our company', description2: 'Our story and values' },
+    { text: 'Contact Us', url: 'https://example.com/contact', description1: 'Get in touch with our team', description2: 'We respond within 24 hours' },
+  ]);
 
   const addHeadline = () => {
     if (headlines.length < 15) {
@@ -240,6 +253,24 @@ export default function CampaignCreationForm() {
     } else {
       setLeadFields([...leadFields, field]);
     }
+  };
+
+  const addSitelink = () => {
+    if (sitelinks.length < 8) {
+      setSitelinks([...sitelinks, { text: '', url: '', description1: '', description2: '' }]);
+    }
+  };
+
+  const removeSitelink = (index: number) => {
+    if (sitelinks.length > 2) {
+      setSitelinks(sitelinks.filter((_, i) => i !== index));
+    }
+  };
+
+  const updateSitelink = (index: number, field: keyof Sitelink, value: string) => {
+    const updated = [...sitelinks];
+    updated[index] = { ...updated[index], [field]: value };
+    setSitelinks(updated);
   };
 
   const getCharCounterClass = (current: number, max: number) => {
@@ -1172,6 +1203,189 @@ export default function CampaignCreationForm() {
                 </button>
               </div>
             )}
+          </div>
+
+          <div className="bg-white rounded-lg shadow p-6">
+            <div className="flex items-center justify-between mb-2">
+              <h2 className="text-xl font-semibold flex items-center gap-2">
+                {t.sitelinks.title}
+                <span className="text-xs bg-gray-100 text-gray-600 px-2 py-0.5 rounded">{t.optional}</span>
+              </h2>
+              <label className="flex items-center gap-2">
+                <input
+                  type="checkbox"
+                  checked={sitelinksEnabled}
+                  onChange={(e) => setSitelinksEnabled(e.target.checked)}
+                  className="w-4 h-4"
+                />
+                <span className="text-sm">{t.enable}</span>
+              </label>
+            </div>
+
+            {sitelinksEnabled && (
+              <div className="space-y-4">
+                <div className="bg-green-50 border border-green-200 rounded-lg p-4">
+                  <p className="text-sm text-green-800 font-medium mb-2">{t.sitelinks.whatIsThis}</p>
+                  <p className="text-sm text-green-700">{t.sitelinks.description}</p>
+                  <p className="text-sm text-green-700 mt-2">
+                    <strong>{t.sitelinks.example}</strong> {t.sitelinks.exampleText}
+                  </p>
+                  <p className="text-sm text-green-700 mt-2">
+                    <strong>{t.sitelinks.whyUseIt}</strong> {t.sitelinks.whyUseItText}
+                  </p>
+                </div>
+                <FieldMeta
+                  ai={t.sitelinks.sectionAI}
+                  importance={t.sitelinks.sectionImportance}
+                  bestPractice={t.sitelinks.sectionBestPractice}
+                  impact={t.sitelinks.sectionImpact}
+                  t={t}
+                />
+                
+                {sitelinks.map((sitelink, index) => (
+                  <div key={index} className="border border-gray-200 rounded-lg p-4 space-y-3">
+                    <div className="flex justify-between items-center">
+                      <span className="font-medium text-sm">{t.sitelinks.title} {index + 1}</span>
+                      {sitelinks.length > 2 && (
+                        <button
+                          type="button"
+                          onClick={() => removeSitelink(index)}
+                          className="text-red-500 hover:text-red-700 text-sm"
+                        >
+                          {t.sitelinks.remove}
+                        </button>
+                      )}
+                    </div>
+                    
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                      <div>
+                        <label className="block text-xs text-gray-600 mb-1">{t.sitelinks.textLabel}</label>
+                        <input
+                          type="text"
+                          maxLength={25}
+                          value={sitelink.text}
+                          onChange={(e) => updateSitelink(index, 'text', e.target.value)}
+                          placeholder={t.sitelinks.textPlaceholder}
+                          className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        />
+                        <span className={`text-xs ${getCharCounterClass(sitelink.text.length, 25)}`}>
+                          {sitelink.text.length}/25
+                        </span>
+                      </div>
+                      <div>
+                        <label className="block text-xs text-gray-600 mb-1">{t.sitelinks.urlLabel}</label>
+                        <input
+                          type="url"
+                          value={sitelink.url}
+                          onChange={(e) => updateSitelink(index, 'url', e.target.value)}
+                          placeholder={t.sitelinks.urlPlaceholder}
+                          className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        />
+                      </div>
+                    </div>
+                    
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                      <div>
+                        <label className="block text-xs text-gray-600 mb-1">{t.sitelinks.desc1Label}</label>
+                        <input
+                          type="text"
+                          maxLength={35}
+                          value={sitelink.description1}
+                          onChange={(e) => updateSitelink(index, 'description1', e.target.value)}
+                          placeholder={t.sitelinks.desc1Placeholder}
+                          className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        />
+                        <span className={`text-xs ${getCharCounterClass(sitelink.description1.length, 35)}`}>
+                          {sitelink.description1.length}/35
+                        </span>
+                      </div>
+                      <div>
+                        <label className="block text-xs text-gray-600 mb-1">{t.sitelinks.desc2Label}</label>
+                        <input
+                          type="text"
+                          maxLength={35}
+                          value={sitelink.description2}
+                          onChange={(e) => updateSitelink(index, 'description2', e.target.value)}
+                          placeholder={t.sitelinks.desc2Placeholder}
+                          className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        />
+                        <span className={`text-xs ${getCharCounterClass(sitelink.description2.length, 35)}`}>
+                          {sitelink.description2.length}/35
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+
+                {sitelinks.length < 8 && (
+                  <button
+                    type="button"
+                    onClick={addSitelink}
+                    className="text-sm text-green-600 hover:text-green-700"
+                  >
+                    {t.sitelinks.addSitelink}
+                  </button>
+                )}
+              </div>
+            )}
+          </div>
+
+          {/* Account-Level Assets Info Section */}
+          <div className="bg-white rounded-lg shadow p-6">
+            <h2 className="text-xl font-semibold flex items-center gap-2 mb-4">
+              {t.accountAssets?.title || 'Account-Level Assets'}
+              <span className="text-xs bg-blue-100 text-blue-600 px-2 py-0.5 rounded">{t.accountAssets?.info || 'INFO'}</span>
+            </h2>
+            
+            <div className="bg-amber-50 border border-amber-200 rounded-lg p-4 mb-4">
+              <p className="text-sm text-amber-800 font-medium mb-2">⚠️ {t.accountAssets?.requiredInUI || 'Required in Google Ads UI'}</p>
+              <p className="text-sm text-amber-700 mb-3">
+                {t.accountAssets?.description || 'The following assets must be created directly in Google Ads UI before your campaign can be fully optimized:'}
+              </p>
+              
+              <div className="space-y-3">
+                <div className="flex items-start gap-3 p-3 bg-white rounded border border-amber-100">
+                  <span className="text-lg">🏢</span>
+                  <div>
+                    <p className="font-medium text-amber-900">{t.accountAssets?.businessName || 'Business Name'}</p>
+                    <p className="text-sm text-amber-700">{t.accountAssets?.businessNameDesc || 'Your official business name that appears in ads'}</p>
+                  </div>
+                </div>
+                
+                <div className="flex items-start gap-3 p-3 bg-white rounded border border-amber-100">
+                  <span className="text-lg">🖼️</span>
+                  <div>
+                    <p className="font-medium text-amber-900">{t.accountAssets?.logo || 'Business Logo'}</p>
+                    <p className="text-sm text-amber-700">{t.accountAssets?.logoDesc || 'Your company logo for brand recognition in display ads'}</p>
+                  </div>
+                </div>
+                
+                <div className="flex items-start gap-3 p-3 bg-white rounded border border-amber-100">
+                  <span className="text-lg">📍</span>
+                  <div>
+                    <p className="font-medium text-amber-900">{t.accountAssets?.location || 'Location Asset'}</p>
+                    <p className="text-sm text-amber-700">{t.accountAssets?.locationDesc || 'Link to your Google Business Profile for location extensions'}</p>
+                  </div>
+                </div>
+              </div>
+              
+              <div className="mt-4 pt-3 border-t border-amber-200">
+                <p className="text-sm text-amber-800 font-medium mb-2">{t.accountAssets?.howToAdd || 'How to add these assets:'}</p>
+                <ol className="text-sm text-amber-700 list-decimal list-inside space-y-1">
+                  <li>{t.accountAssets?.step1 || 'Go to Google Ads → Ads & assets → Assets'}</li>
+                  <li>{t.accountAssets?.step2 || 'Click the + button and select the asset type'}</li>
+                  <li>{t.accountAssets?.step3 || 'For Location, link your Google Business Profile'}</li>
+                </ol>
+                <a 
+                  href="https://ads.google.com/aw/assets" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="inline-block mt-3 text-sm text-amber-800 hover:text-amber-900 underline font-medium"
+                >
+                  {t.accountAssets?.openGoogleAds || 'Open Google Ads Assets →'}
+                </a>
+              </div>
+            </div>
           </div>
 
           <div className="bg-white rounded-lg shadow p-6">
