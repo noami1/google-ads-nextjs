@@ -457,6 +457,8 @@ export const translations = {
       step2: "Click the + button and select the asset type",
       step3: "For Location, link your Google Business Profile",
       openGoogleAds: "Open Google Ads Assets →",
+      googleAnalytics: "Google Analytics 4",
+      googleAnalyticsDesc: "Link GA4 to import conversions and track website behavior",
     },
     
     submit: {
@@ -979,6 +981,8 @@ export const translations = {
       step2: "לחץ על כפתור ה-+ ובחר את סוג הנכס",
       step3: "למיקום, קשר את הפרופיל העסקי שלך ב-Google",
       openGoogleAds: "פתח נכסי Google Ads →",
+      googleAnalytics: "Google Analytics 4",
+      googleAnalyticsDesc: "קשר GA4 לייבוא המרות ומעקב אחר התנהגות באתר",
     },
     
     submit: {

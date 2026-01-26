@@ -1367,6 +1367,14 @@ export default function CampaignCreationForm() {
                     <p className="text-sm text-amber-700">{t.accountAssets?.locationDesc || 'Link to your Google Business Profile for location extensions'}</p>
                   </div>
                 </div>
+                
+                <div className="flex items-start gap-3 p-3 bg-white rounded border border-amber-100">
+                  <span className="text-lg">📊</span>
+                  <div>
+                    <p className="font-medium text-amber-900">{t.accountAssets?.googleAnalytics || 'Google Analytics 4'}</p>
+                    <p className="text-sm text-amber-700">{t.accountAssets?.googleAnalyticsDesc || 'Link GA4 to import conversions and track website behavior'}</p>
+                  </div>
+                </div>
               </div>
               
               <div className="mt-4 pt-3 border-t border-amber-200">
